@@ -53,15 +53,28 @@ classDiagram
         - Float valor_total
     }
 
-    %% Relacionamentos
-    Pessoa --> Endereco
-    Coleta --> Pessoa : usuario
-    Coleta --> Pessoa : colaborador
-    Coleta --> Pessoa : cooperativa
-    Coleta --> Veiculo
-    Coleta --> Material
+   %% Relacionamentos
 
-    Venda --> Material
-    Venda --> Veiculo
-    Venda --> Pessoa : industria
+%% Pessoa -> Endereco (Composição)
+Pessoa *-- Endereco : possui
+
+%% Coleta -> Pessoa (usuário, colaborador, cooperativa)
+Coleta "N" -- * "1" Pessoa : usuario
+Coleta "N" -- * "1" Pessoa : colaborador
+Coleta "N" -- * "1" Pessoa : cooperativa
+
+%% Coleta -> Veiculo
+Coleta "N" -- * "1" Veiculo : utiliza
+
+%% Coleta -> Material
+Coleta "N" -- * "1" Material : coleta
+
+%% Venda -> Material
+Venda "N" -- * "1" Material : contém
+
+%% Venda -> Veiculo
+Venda "N" -- * "1" Veiculo : entrega via
+
+%% Venda -> Pessoa (industria)
+Venda "N" -- * "1" Pessoa : vendida para
 ```
