@@ -3,71 +3,58 @@ package com.akemi.ecoleta.model;
 import java.time.LocalDateTime;
 
 import com.akemi.ecoleta.model.enums.Status;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+@Entity
 public class Venda {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id_venda;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDateTime data_venda;
+
+    @ManyToOne
+    @JoinColumn(name = "id_material", referencedColumnName = "id_material", nullable = false)
     private Material id_material;
+
+    @Column(name = "quantida", nullable = false)
     private float quantidade_kg;
-    private Veiculo id_veiculo;
-    private Pessoa id_industria;
+
+    @ManyToOne
+    @JoinColumn(name = "id_veiculo", referencedColumnName = "id_veiculo", nullable = false)
+    private Veiculo veiculo;
+
+    @ManyToOne
+    @JoinColumn(name = "id_industria", referencedColumnName = "id_usuario", nullable = false)
+    private Pessoa industria;
+
+    @Column(name = "status", nullable = false)
+    @Enumerated(EnumType.STRING)
     private Status status;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDateTime data_entrega;
+
+    @Column(name = "valor_total", nullable = false)
+    @Enumerated(EnumType.STRING)
     private float valor_total;
-
-    //gets e sets 
-    
-    public LocalDateTime getData_venda() {
-        return data_venda;
-    }
-    public void setData_venda(LocalDateTime data_venda) {
-        this.data_venda = data_venda;
-    }
-    public Material getId_material() {
-        return id_material;
-    }
-    public void setId_material(Material id_material) {
-        this.id_material = id_material;
-    }
-    public float getQuantidade_kg() {
-        return quantidade_kg;
-    }
-    public void setQuantidade_kg(float quantidade_kg) {
-        this.quantidade_kg = quantidade_kg;
-    }
-    public Veiculo getId_veiculo() {
-        return id_veiculo;
-    }
-    public void setId_veiculo(Veiculo id_veiculo) {
-        this.id_veiculo = id_veiculo;
-    }
-    public Pessoa getId_industria() {
-        return id_industria;
-    }
-    public void setId_industria(Pessoa id_industria) {
-        this.id_industria = id_industria;
-    }
-    public Status getStatus() {
-        return status;
-    }
-    public void setStatus(Status status) {
-        this.status = status;
-    }
-    public LocalDateTime getData_entrega() {
-        return data_entrega;
-    }
-    public void setData_entrega(LocalDateTime data_entrega) {
-        this.data_entrega = data_entrega;
-    }
-    public float getValor_total() {
-        return valor_total;
-    }
-    public void setValor_total(float valor_total) {
-        this.valor_total = valor_total;
-    }
-
-
-    
-    
 
 }

@@ -4,78 +4,62 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import com.akemi.ecoleta.model.enums.Status;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+@Entity
 public class Coleta {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id_coleta;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate dataSolicitacao;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate dataColeta;
+
+    @Column(name = "horaColeta", nullable = false)
     private LocalDateTime horaColeta;
+
+    @ManyToOne
+    @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario", nullable = false)
     private Pessoa usuario;
+
+    @ManyToOne
+    @JoinColumn(name = "id_colaborador", referencedColumnName = "id_usuario", nullable = false)
     private Pessoa colaborador;
+
+    @ManyToOne
+    @JoinColumn(name = "id_cooperativa", referencedColumnName = "id_usuario", nullable = false)
     private Pessoa cooperativa;
-    private Veiculo id_veiculo;
-    private Material id_material;
+
+    @ManyToOne
+    @JoinColumn(name = "id_veiculo", referencedColumnName = "id_veiculo", nullable = false)
+    private Veiculo veiculo;
+
+    @ManyToOne
+    @JoinColumn(name = "id_material", referencedColumnName = "id_material", nullable = false)
+    private Material material;
+    
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", nullable = false)
     private Status status;
-
-    //gets e sets 
-    
-    public LocalDate getDataSolicitacao() {
-        return dataSolicitacao;
-    }
-    public void setDataSolicitacao(LocalDate dataSolicitacao) {
-        this.dataSolicitacao = dataSolicitacao;
-    }
-    public LocalDate getDataColeta() {
-        return dataColeta;
-    }
-    public void setDataColeta(LocalDate dataColeta) {
-        this.dataColeta = dataColeta;
-    }
-    public LocalDateTime getHoraColeta() {
-        return horaColeta;
-    }
-    public void setHoraColeta(LocalDateTime horaColeta) {
-        this.horaColeta = horaColeta;
-    }
-    public Pessoa getUsuario() {
-        return usuario;
-    }
-    public void setUsuario(Pessoa usuario) {
-        this.usuario = usuario;
-    }
-    public Pessoa getColaborador() {
-        return colaborador;
-    }
-    public void setColaborador(Pessoa colaborador) {
-        this.colaborador = colaborador;
-    }
-    public Pessoa getCooperativa() {
-        return cooperativa;
-    }
-    public void setCooperativa(Pessoa cooperativa) {
-        this.cooperativa = cooperativa;
-    }
-    public Veiculo getId_veiculo() {
-        return id_veiculo;
-    }
-    public void setId_veiculo(Veiculo id_veiculo) {
-        this.id_veiculo = id_veiculo;
-    }
-    public Material getId_material() {
-        return id_material;
-    }
-    public void setId_material(Material id_material) {
-        this.id_material = id_material;
-    }
-    public Status getStatus() {
-        return status;
-    }
-    public void setStatus(Status status) {
-        this.status = status;
-    }
-
-    
 
 }

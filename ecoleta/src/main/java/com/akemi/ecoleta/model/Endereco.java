@@ -1,89 +1,51 @@
 package com.akemi.ecoleta.model;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+@Entity
 public class Endereco {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id_endereco;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Pessoa usuario;
+
+    @Column(name = "logradouro", nullable = false)
     private String logradouro;
+
+    @Column(name = "numero", nullable = false)
     private int numero;
+
+    @Column(name = "bairro", nullable = false)
     private String bairro;
+
+    @Column(name = "cidade", nullable = false)
     private String cidade;
+
+    @Column(name = "complemento")
     private String complemento;
+
+    @Column(name = "cep", nullable = false)
     private String cep;
+
+    @Column(name = "telefone", nullable = false)
     private String telefone;
+
+    @Column(name = "pontoReferencia", nullable = false)
     private String pontoReferencia;
-
-    // gets e sets
-
-    public long getId_endereco() {
-        return id_endereco;
-    }
-
-    public void setId_endereco(long id_endereco) {
-        this.id_endereco = id_endereco;
-    }
-
-    public String getLogradouro() {
-        return logradouro;
-    }
-
-    public void setLogradouro(String logradouro) {
-        this.logradouro = logradouro;
-    }
-
-    public int getNumero() {
-        return numero;
-    }
-
-    public void setNumero(int numero) {
-        this.numero = numero;
-    }
-
-    public String getBairro() {
-        return bairro;
-    }
-
-    public void setBairro(String bairro) {
-        this.bairro = bairro;
-    }
-
-    public String getCidade() {
-        return cidade;
-    }
-
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
-    }
-
-    public String getComplemento() {
-        return complemento;
-    }
-
-    public void setComplemento(String complemento) {
-        this.complemento = complemento;
-    }
-
-    public String getCep() {
-        return cep;
-    }
-
-    public void setCep(String cep) {
-        this.cep = cep;
-    }
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
-
-    public String getPontoReferencia() {
-        return pontoReferencia;
-    }
-
-    public void setPontoReferencia(String pontoReferencia) {
-        this.pontoReferencia = pontoReferencia;
-    }
 
 }

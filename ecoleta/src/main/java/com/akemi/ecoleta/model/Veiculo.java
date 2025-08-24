@@ -1,48 +1,45 @@
 package com.akemi.ecoleta.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+@Entity
 public class Veiculo {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id_veiculo;
+    @Column(name = "placa", nullable = false, unique = true)
     private String placa;
+    @Column(name = "modelo", nullable = false)
     private String modelo;
+    @Column(name = "marca", nullable = false)
     private String marca;
+    @Column(name = "modelo", nullable = false)
     private String ano_modelo;
 
-     //gets e sets
-     
-    public long getId_veiculo() {
-        return id_veiculo;
-    }
-    public void setId_veiculo(long id_veiculo) {
-        this.id_veiculo = id_veiculo;
-    }
-    public String getPlaca() {
-        return placa;
-    }
-    public void setPlaca(String placa) {
-        this.placa = placa;
-    }
-    public String getModelo() {
-        return modelo;
-    }
-    public void setModelo(String modelo) {
-        this.modelo = modelo;
-    }
-    public String getMarca() {
-        return marca;
-    }
-    public void setMarca(String marca) {
-        this.marca = marca;
-    }
-    public String getAno_modelo() {
-        return ano_modelo;
-    }
-    public void setAno_modelo(String ano_modelo) {
-        this.ano_modelo = ano_modelo;
-    }
+    @OneToMany(mappedBy = "veiculo", fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private List<Coleta> coletas = new ArrayList<Coleta>();
 
-   
-
-    
+    @OneToMany(mappedBy = "veiculo", fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private List<Venda> vendas = new ArrayList<Venda>();
 
 }

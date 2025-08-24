@@ -40,6 +40,7 @@ classDiagram
     }
 
     class Coleta {
+        - long id_coleta
         - Date data_solicitacao
         - Date data_coleta
         - DateTime horario_coleta
@@ -47,6 +48,7 @@ classDiagram
     }
 
     class Venda {
+        - long id_venda
         - Date data_venda
         - Float quantidade_kg
         - Enum status
