@@ -1,0 +1,42 @@
+package com.akemi.ecoleta.model.enums;
+
+public enum Status {
+    AGUARDANDO(0, "AGUARDANDO"), COLETADO(1, "COLETADO"), TRATADO(2, "TRATADO"), ENTREGUE(3, "ENTREGUE");
+
+    private Integer codigo;
+    private String descricao;
+
+    private Status(Integer codigo, String descricao) {
+        this.codigo = codigo;
+        this.descricao = descricao;
+    }
+
+    public Integer getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(Integer codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public static Status toEnum(Integer cod) {
+        if (cod == null) {
+            return null;
+        }
+        for (Status x : Status.values()) {
+            if (cod.equals(x.getCodigo())) {
+                return x;
+            }
+        }
+        throw new IllegalArgumentException("Status inválido");
+
+    }
+}
