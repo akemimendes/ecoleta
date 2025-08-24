@@ -5,7 +5,7 @@
 classDiagram
 
     class Pessoa {
-        - Long id_usuario
+        - long id_usuario
         - String cpfCnpj
         - String nome
         - Endereco endereco
@@ -13,7 +13,8 @@ classDiagram
     }
 
     class Endereco {
-        - String rua
+        - long id_endereco
+        - String logradouro
         - String numero
         - String complemento
         - String bairro
@@ -24,7 +25,7 @@ classDiagram
     }
 
     class Veiculo {
-        - Long id_veiculo
+        - long id_veiculo
         - String placa
         - String modelo
         - String marca
@@ -32,7 +33,7 @@ classDiagram
     }
 
     class Material {
-        - Long id_material
+        - long id_material
         - String descricao
         - Float valor_kg
         - Float kg_disponivel
