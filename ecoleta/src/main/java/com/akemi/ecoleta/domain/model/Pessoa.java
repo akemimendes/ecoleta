@@ -1,9 +1,9 @@
-package com.akemi.ecoleta.model;
+package com.akemi.ecoleta.domain.model;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.akemi.ecoleta.model.enums.TipoPessoa;
+import com.akemi.ecoleta.domain.model.enums.TipoPessoa;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;

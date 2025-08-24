@@ -1,4 +1,4 @@
-package com.akemi.ecoleta.model;
+package com.akemi.ecoleta.domain.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,10 +29,10 @@ public class Material {
     @Column(name = "descricao", nullable = false)
     private String descricao;
 
-    @Column(name = "valor", nullable = false)
+    @Column(name = "valor", nullable = false, precision = 2)
     private float valor;
-    
-    @Column(name = "kg_disponivel")
+
+    @Column(name = "kg_disponivel", precision = 2)
     private float kg_disponivel;
 
     @OneToMany(mappedBy = "material", fetch = FetchType.LAZY)

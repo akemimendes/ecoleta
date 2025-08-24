@@ -1,8 +1,8 @@
-package com.akemi.ecoleta.model;
+package com.akemi.ecoleta.domain.model;
 
 import java.time.LocalDateTime;
 
-import com.akemi.ecoleta.model.enums.Status;
+import com.akemi.ecoleta.domain.model.enums.Status;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Column;
@@ -33,9 +33,9 @@ public class Venda {
 
     @ManyToOne
     @JoinColumn(name = "id_material", referencedColumnName = "id_material", nullable = false)
-    private Material id_material;
+    private Material material;
 
-    @Column(name = "quantida", nullable = false)
+    @Column(name = "quantidade", nullable = false, precision = 2)
     private float quantidade_kg;
 
     @ManyToOne
@@ -53,8 +53,7 @@ public class Venda {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDateTime data_entrega;
 
-    @Column(name = "valor_total", nullable = false)
-    @Enumerated(EnumType.STRING)
+    @Column(name = "valor_total", nullable = false, precision = 2)
     private float valor_total;
 
 }

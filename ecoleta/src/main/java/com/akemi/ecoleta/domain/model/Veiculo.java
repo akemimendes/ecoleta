@@ -1,4 +1,4 @@
-package com.akemi.ecoleta.model;
+package com.akemi.ecoleta.domain.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +31,7 @@ public class Veiculo {
     private String modelo;
     @Column(name = "marca", nullable = false)
     private String marca;
-    @Column(name = "modelo", nullable = false)
+    @Column(name = "ano_modelo", nullable = false)
     private String ano_modelo;
 
     @OneToMany(mappedBy = "veiculo", fetch = FetchType.LAZY)

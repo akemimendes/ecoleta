@@ -14,6 +14,7 @@ classDiagram
 
     class Endereco {
         - long id_endereco
+        - long id_usuario
         - String logradouro
         - String numero
         - String complemento
