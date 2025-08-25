@@ -3,6 +3,7 @@ package com.akemi.ecoleta.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.akemi.ecoleta.model.dto.MaterialDTO;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
@@ -42,4 +43,12 @@ public class Material {
     @OneToMany(mappedBy = "material", fetch = FetchType.LAZY)
     @JsonManagedReference
     private List<Coleta> coletas = new ArrayList<Coleta>();
+
+    public Material(MaterialDTO material) {
+        this.descricao = material.getDescricao();
+        this.valor = material.getValor();
+        this.kg_disponivel = material.getKg_disponivel();
+        this.vendas = material.getVendas();
+        this.coletas = material.getColetas();
+    }
 }

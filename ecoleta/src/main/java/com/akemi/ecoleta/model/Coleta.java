@@ -3,6 +3,7 @@ package com.akemi.ecoleta.model;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import com.akemi.ecoleta.model.dto.ColetaDTO;
 import com.akemi.ecoleta.model.enums.Status;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -61,5 +62,17 @@ public class Coleta {
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
     private Status status;
+
+    public Coleta(ColetaDTO coleta) {
+        this.dataSolicitacao = coleta.getDataSolicitacao();
+        this.dataColeta = coleta.getDataColeta();
+        this.horaColeta = coleta.getHoraColeta();
+        this.usuario = coleta.getUsuario();
+        this.colaborador=coleta.getColaborador();
+        this.cooperativa=coleta.getCooperativa();
+        this.veiculo=coleta.getVeiculo();
+        this.material=coleta.getMaterial();
+        this.status=coleta.getStatus();
+    }
 
 }

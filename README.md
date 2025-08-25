@@ -8,6 +8,8 @@ classDiagram
         - long id_usuario
         - String cpfCnpj
         - String nome
+        - String email
+        - String senha
         - Endereco endereco
         - Enum tipo
     }

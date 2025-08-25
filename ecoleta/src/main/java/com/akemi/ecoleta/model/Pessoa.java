@@ -35,6 +35,12 @@ public class Pessoa {
     @Column(name = "nome", nullable = false)
     private String nome;
 
+    @Column(name = "email", nullable = false)
+    private String email;
+
+    @Column(name = "senha", nullable = false)
+    private String senha;
+
     @OneToOne(cascade = CascadeType.ALL)
     private Endereco endereco;
 

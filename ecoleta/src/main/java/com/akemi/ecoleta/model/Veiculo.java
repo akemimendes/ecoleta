@@ -3,6 +3,7 @@ package com.akemi.ecoleta.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.akemi.ecoleta.model.dto.VeiculoDTO;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
@@ -41,5 +42,15 @@ public class Veiculo {
     @OneToMany(mappedBy = "veiculo", fetch = FetchType.LAZY)
     @JsonManagedReference
     private List<Venda> vendas = new ArrayList<Venda>();
+
+
+    public Veiculo(VeiculoDTO veiculo) {
+       this.placa = veiculo.getPlaca();
+        this.modelo = veiculo.getModelo();
+        this.marca = veiculo.getMarca();
+        this.ano_modelo = veiculo.getAno_modelo();
+        this.coletas = veiculo.getColetas();
+        this.vendas = veiculo.getVendas();
+    }
 
 }

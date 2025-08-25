@@ -2,6 +2,7 @@ package com.akemi.ecoleta.model;
 
 import java.time.LocalDateTime;
 
+import com.akemi.ecoleta.model.dto.VendaDTO;
 import com.akemi.ecoleta.model.enums.Status;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -55,5 +56,16 @@ public class Venda {
 
     @Column(name = "valor_total", nullable = false, scale = 2)
     private float valor_total;
+
+    public Venda(VendaDTO venda) {
+        this.data_venda = venda.getData_venda();
+        this.material = venda.getMaterial();
+        this.quantidade_kg = venda.getQuantidade_kg();
+        this.veiculo = venda.getVeiculo();
+        this.industria = venda.getIndustria();
+        this.status = venda.getStatus();
+        this.data_entrega = venda.getData_entrega();
+        this.valor_total = venda.getValor_total();
+    }
 
 }
