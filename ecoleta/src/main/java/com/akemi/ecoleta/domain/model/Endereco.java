@@ -1,4 +1,4 @@
-package com.akemi.ecoleta.model;
+package com.akemi.ecoleta.domain.model;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -19,7 +19,7 @@ public class Endereco {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id_endereco;
+    private Long id_endereco;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Pessoa usuario;

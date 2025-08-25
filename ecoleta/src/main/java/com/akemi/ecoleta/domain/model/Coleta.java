@@ -1,9 +1,9 @@
-package com.akemi.ecoleta.model;
+package com.akemi.ecoleta.domain.model;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-import com.akemi.ecoleta.model.enums.Status;
+import com.akemi.ecoleta.domain.model.enums.Status;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Column;
@@ -27,7 +27,7 @@ public class Coleta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id_coleta;
+    private Long id_coleta;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate dataSolicitacao;

@@ -26,7 +26,7 @@ public class Venda {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id_venda;
+    private Long id_venda;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDateTime data_venda;
@@ -35,7 +35,7 @@ public class Venda {
     @JoinColumn(name = "id_material", referencedColumnName = "id_material", nullable = false)
     private Material material;
 
-    @Column(name = "quantidade", nullable = false, precision = 2)
+    @Column(name = "quantidade", nullable = false, scale = 2)
     private float quantidade_kg;
 
     @ManyToOne
@@ -53,7 +53,7 @@ public class Venda {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDateTime data_entrega;
 
-    @Column(name = "valor_total", nullable = false, precision = 2)
+    @Column(name = "valor_total", nullable = false, scale = 2)
     private float valor_total;
 
 }

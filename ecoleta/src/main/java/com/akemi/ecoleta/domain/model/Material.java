@@ -24,15 +24,15 @@ public class Material {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id_material;
+    private Long id_material;
 
     @Column(name = "descricao", nullable = false)
     private String descricao;
 
-    @Column(name = "valor", nullable = false, precision = 2)
+    @Column(name = "valor", nullable = false, scale = 2)
     private float valor;
 
-    @Column(name = "kg_disponivel", precision = 2)
+    @Column(name = "kg_disponivel", scale  = 2)
     private float kg_disponivel;
 
     @OneToMany(mappedBy = "material", fetch = FetchType.LAZY)

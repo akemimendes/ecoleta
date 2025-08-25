@@ -29,7 +29,7 @@ public class Pessoa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id_usuario;
+    private Long id_usuario;
     @Column(name = "cpf_cnpj", nullable = false, unique = true)
     private String cpf_cnpj;
     @Column(name = "nome", nullable = false)
