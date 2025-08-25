@@ -3,6 +3,7 @@ package com.akemi.ecoleta.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.akemi.ecoleta.model.dto.PessoaDTO;
 import com.akemi.ecoleta.model.enums.TipoPessoa;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -30,8 +31,10 @@ public class Pessoa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_usuario;
+
     @Column(name = "cpf_cnpj", nullable = false, unique = true)
     private String cpf_cnpj;
+
     @Column(name = "nome", nullable = false)
     private String nome;
 
@@ -55,5 +58,17 @@ public class Pessoa {
     @OneToMany(mappedBy = "industria", fetch = FetchType.LAZY)
     @JsonManagedReference
     private List<Venda> vendas = new ArrayList<Venda>();
+
+    public Pessoa(PessoaDTO pessoa) {
+        this.id_usuario = pessoa.getId_usuario();
+        this.cpf_cnpj = pessoa.getCpf_cnpj();
+        this.nome = pessoa.getNome();
+        this.email = pessoa.getEmail();
+        this.senha = pessoa.getSenha();
+        this.endereco = pessoa.getEndereco();
+        this.tipoPessoa = pessoa.getTipoPessoa();
+        this.coletas = pessoa.getColetas();
+        this.vendas = pessoa.getVendas();
+    }
 
 }

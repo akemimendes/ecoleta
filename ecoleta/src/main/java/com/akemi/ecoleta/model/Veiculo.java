@@ -43,9 +43,9 @@ public class Veiculo {
     @JsonManagedReference
     private List<Venda> vendas = new ArrayList<Venda>();
 
-
     public Veiculo(VeiculoDTO veiculo) {
-       this.placa = veiculo.getPlaca();
+        this.id_veiculo=veiculo.getId_veiculo();
+        this.placa = veiculo.getPlaca();
         this.modelo = veiculo.getModelo();
         this.marca = veiculo.getMarca();
         this.ano_modelo = veiculo.getAno_modelo();

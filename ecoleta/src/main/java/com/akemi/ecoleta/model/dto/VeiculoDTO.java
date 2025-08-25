@@ -12,6 +12,8 @@ import lombok.Data;
 @Data
 public class VeiculoDTO {
 
+    private Long id_veiculo;
+
     private String placa;
 
     private String modelo;
@@ -25,7 +27,8 @@ public class VeiculoDTO {
     private List<Venda> vendas = new ArrayList<Venda>();
 
     public VeiculoDTO(Veiculo veiculo) {
-       this.placa = veiculo.getPlaca();
+        this.id_veiculo = veiculo.getId_veiculo();
+        this.placa = veiculo.getPlaca();
         this.modelo = veiculo.getModelo();
         this.marca = veiculo.getMarca();
         this.ano_modelo = veiculo.getAno_modelo();

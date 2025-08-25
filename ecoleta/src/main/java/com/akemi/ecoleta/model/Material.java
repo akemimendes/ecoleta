@@ -45,6 +45,7 @@ public class Material {
     private List<Coleta> coletas = new ArrayList<Coleta>();
 
     public Material(MaterialDTO material) {
+        this.id_material= material.getId_material();
         this.descricao = material.getDescricao();
         this.valor = material.getValor();
         this.kg_disponivel = material.getKg_disponivel();

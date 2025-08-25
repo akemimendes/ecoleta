@@ -4,6 +4,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import com.akemi.ecoleta.model.Coleta;
+import com.akemi.ecoleta.model.dto.ColetaDTO;
 
 public interface ColetaService {
 
@@ -11,9 +12,9 @@ public interface ColetaService {
 
     Coleta getColetaById(long id_coleta);
 
-    Coleta createColeta(Coleta coleta);
+    Coleta createColeta(ColetaDTO coleta);
 
-    Coleta updateColeta(Coleta coleta);
+    Coleta updateColeta(ColetaDTO coleta);
 
     void deleteColeta(long id_coleta);
 }

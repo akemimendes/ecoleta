@@ -58,6 +58,7 @@ public class Venda {
     private float valor_total;
 
     public Venda(VendaDTO venda) {
+        this.id_venda = venda.getId_venda();
         this.data_venda = venda.getData_venda();
         this.material = venda.getMaterial();
         this.quantidade_kg = venda.getQuantidade_kg();
