@@ -1,4 +1,4 @@
-package com.akemi.ecoleta.domain.model.enums;
+package com.akemi.ecoleta.model.enums;
 
 public enum TipoPessoa {
 

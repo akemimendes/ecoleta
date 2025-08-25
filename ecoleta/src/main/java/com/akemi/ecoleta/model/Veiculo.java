@@ -1,4 +1,4 @@
-package com.akemi.ecoleta.domain.model;
+package com.akemi.ecoleta.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,26 +20,26 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @Entity
-public class Material {
+public class Veiculo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_material;
+    private Long id_veiculo;
+    @Column(name = "placa", nullable = false, unique = true)
+    private String placa;
+    @Column(name = "modelo", nullable = false)
+    private String modelo;
+    @Column(name = "marca", nullable = false)
+    private String marca;
+    @Column(name = "ano_modelo", nullable = false)
+    private String ano_modelo;
 
-    @Column(name = "descricao", nullable = false)
-    private String descricao;
+    @OneToMany(mappedBy = "veiculo", fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private List<Coleta> coletas = new ArrayList<Coleta>();
 
-    @Column(name = "valor", nullable = false, scale = 2)
-    private float valor;
-
-    @Column(name = "kg_disponivel", scale  = 2)
-    private float kg_disponivel;
-
-    @OneToMany(mappedBy = "material", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "veiculo", fetch = FetchType.LAZY)
     @JsonManagedReference
     private List<Venda> vendas = new ArrayList<Venda>();
 
-    @OneToMany(mappedBy = "material", fetch = FetchType.LAZY)
-    @JsonManagedReference
-    private List<Coleta> coletas = new ArrayList<Coleta>();
 }

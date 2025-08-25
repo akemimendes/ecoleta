@@ -6,8 +6,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.akemi.ecoleta.domain.model.Material;
-import com.akemi.ecoleta.domain.repository.MaterialRepository;
+import com.akemi.ecoleta.model.Material;
+import com.akemi.ecoleta.repository.MaterialRepository;
 import com.akemi.ecoleta.service.MaterialService;
 
 @Service

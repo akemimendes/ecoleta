@@ -1,4 +1,4 @@
-package com.akemi.ecoleta.domain.model.enums;
+package com.akemi.ecoleta.model.enums;
 
 public enum Status {
     AGUARDANDO(0, "AGUARDANDO"), COLETADO(1, "COLETADO"), TRATADO(2, "TRATADO"), ENTREGUE(3, "ENTREGUE");

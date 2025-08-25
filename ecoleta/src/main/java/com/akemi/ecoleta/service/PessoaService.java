@@ -1,6 +1,6 @@
 package com.akemi.ecoleta.service;
 
-import com.akemi.ecoleta.domain.model.Pessoa;
+import com.akemi.ecoleta.model.Pessoa;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

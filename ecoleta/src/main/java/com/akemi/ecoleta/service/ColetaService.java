@@ -3,7 +3,7 @@ package com.akemi.ecoleta.service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import com.akemi.ecoleta.domain.model.Coleta;
+import com.akemi.ecoleta.model.Coleta;
 
 public interface ColetaService {
 

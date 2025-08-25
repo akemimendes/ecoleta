@@ -8,8 +8,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.akemi.ecoleta.domain.model.Pessoa;
-import com.akemi.ecoleta.domain.repository.PessoaRepository;
+import com.akemi.ecoleta.model.Pessoa;
+import com.akemi.ecoleta.repository.PessoaRepository;
 import com.akemi.ecoleta.service.PessoaService;
 
 @Service

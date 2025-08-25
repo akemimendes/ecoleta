@@ -6,8 +6,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.akemi.ecoleta.domain.model.Coleta;
-import com.akemi.ecoleta.domain.repository.ColetaRepository;
+import com.akemi.ecoleta.model.Coleta;
+import com.akemi.ecoleta.repository.ColetaRepository;
 import com.akemi.ecoleta.service.ColetaService;
 
 @Service

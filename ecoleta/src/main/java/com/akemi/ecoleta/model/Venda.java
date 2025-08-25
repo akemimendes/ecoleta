@@ -1,8 +1,8 @@
-package com.akemi.ecoleta.domain.model;
+package com.akemi.ecoleta.model;
 
 import java.time.LocalDateTime;
 
-import com.akemi.ecoleta.domain.model.enums.Status;
+import com.akemi.ecoleta.model.enums.Status;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Column;

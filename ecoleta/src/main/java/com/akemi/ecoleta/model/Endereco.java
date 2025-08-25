@@ -1,4 +1,4 @@
-package com.akemi.ecoleta.domain.model;
+package com.akemi.ecoleta.model;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
