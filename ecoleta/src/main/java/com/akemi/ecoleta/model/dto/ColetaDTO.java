@@ -2,6 +2,7 @@ package com.akemi.ecoleta.model.dto;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import com.akemi.ecoleta.model.Coleta;
 import com.akemi.ecoleta.model.Material;
@@ -20,12 +21,13 @@ public class ColetaDTO {
     private Long id_coleta;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
-    private LocalDate dataSolicitacao;
+    private LocalDate dataSolicitacao=LocalDate.now();
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate dataColeta;
 
-    private LocalDateTime horaColeta;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
+    private LocalTime horaColeta;
 
     private Pessoa usuario;
 
@@ -39,21 +41,18 @@ public class ColetaDTO {
 
     private Status status;
 
-  
-    //convertendo para DTO
+    // convertendo para DTO
     public ColetaDTO(Coleta coleta) {
         this.id_coleta = coleta.getId_coleta();
         this.dataSolicitacao = coleta.getDataSolicitacao();
         this.dataColeta = coleta.getDataColeta();
         this.horaColeta = coleta.getHoraColeta();
         this.usuario = coleta.getUsuario();
-        this.colaborador=coleta.getColaborador();
-        this.cooperativa=coleta.getCooperativa();
-        this.veiculo=coleta.getVeiculo();
-        this.material=coleta.getMaterial();
-        this.status=coleta.getStatus();
+        this.colaborador = coleta.getColaborador();
+        this.cooperativa = coleta.getCooperativa();
+        this.veiculo = coleta.getVeiculo();
+        this.material = coleta.getMaterial();
+        this.status = coleta.getStatus();
     }
-
-   
 
 }

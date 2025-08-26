@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.akemi.ecoleta.model.dto.MaterialDTO;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
@@ -41,10 +42,12 @@ public class Material {
 
     @OneToMany(mappedBy = "material", fetch = FetchType.LAZY)
     @JsonManagedReference
+    @JsonIgnore
     private List<Venda> vendas = new ArrayList<Venda>();
 
     @OneToMany(mappedBy = "material", fetch = FetchType.LAZY)
     @JsonManagedReference
+    @JsonIgnore
     private List<Coleta> coletas = new ArrayList<Coleta>();
 
     public Material(MaterialDTO material) {

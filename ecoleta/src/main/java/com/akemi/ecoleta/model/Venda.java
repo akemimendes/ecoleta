@@ -34,7 +34,7 @@ public class Venda {
     private Long id_venda;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
-    private LocalDateTime data_venda;
+    private LocalDateTime data_venda = LocalDateTime.now();
 
     @ManyToOne
     @JsonBackReference    

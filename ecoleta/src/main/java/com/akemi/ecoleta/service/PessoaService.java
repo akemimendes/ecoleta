@@ -13,7 +13,7 @@ public interface PessoaService {
 
     Pessoa createPessoa(PessoaDTO usuario);
 
-    Pessoa updatePessoa(PessoaDTO usuario);
+    Pessoa updatePessoa(Long id,PessoaDTO usuario);
 
     void deletePessoa(long id_usuario);
 

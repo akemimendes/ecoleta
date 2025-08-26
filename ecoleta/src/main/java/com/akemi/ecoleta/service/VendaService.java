@@ -13,7 +13,7 @@ public interface VendaService {
 
     Venda createVenda(VendaDTO venda);
 
-    Venda updateVenda(VendaDTO venda);
+    Venda updateVenda(Long id,VendaDTO venda);
 
     void deleteVenda(long id_venda);
 }

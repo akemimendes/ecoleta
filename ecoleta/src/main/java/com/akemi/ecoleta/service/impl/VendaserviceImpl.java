@@ -34,7 +34,8 @@ public class VendaserviceImpl implements VendaService {
     }
 
     @Override
-    public Venda updateVenda(VendaDTO venda) {
+    public Venda updateVenda(Long id,VendaDTO venda) {
+        venda.setId_venda(id);
         if (!vendaRepository.existsById(venda.getId_venda())) {
             throw new IllegalArgumentException("Venda não encontrada no sistema.");
         }

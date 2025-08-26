@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.akemi.ecoleta.model.dto.PessoaDTO;
 import com.akemi.ecoleta.model.enums.TipoPessoa;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
@@ -28,10 +29,9 @@ import lombok.NoArgsConstructor;
 @Entity
 public class Pessoa {
 
-
     @SuppressWarnings("unused")
-    private static final long serialVersionID= 1L;
-    
+    private static final long serialVersionID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_usuario;
@@ -48,20 +48,43 @@ public class Pessoa {
     @Column(name = "senha", nullable = false)
     private String senha;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private Endereco endereco;
-
     @Column(name = "status", nullable = false)
     @Enumerated(EnumType.STRING)
     private TipoPessoa tipoPessoa;
 
     @OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
     @JsonManagedReference
+    @JsonIgnore
     private List<Coleta> coletas = new ArrayList<Coleta>();
 
     @OneToMany(mappedBy = "industria", fetch = FetchType.LAZY)
     @JsonManagedReference
+    @JsonIgnore
     private List<Venda> vendas = new ArrayList<Venda>();
+
+    @Column(name = "logradouro", nullable = false)
+    private String logradouro;
+
+    @Column(name = "numero", nullable = false)
+    private int numero;
+
+    @Column(name = "bairro", nullable = false)
+    private String bairro;
+
+    @Column(name = "cidade", nullable = false)
+    private String cidade;
+
+    @Column(name = "complemento")
+    private String complemento;
+
+    @Column(name = "cep", nullable = false)
+    private String cep;
+
+    @Column(name = "telefone", nullable = false)
+    private String telefone;
+
+    @Column(name = "pontoReferencia")
+    private String pontoReferencia;
 
     public Pessoa(PessoaDTO pessoa) {
         this.id_usuario = pessoa.getId_usuario();
@@ -69,7 +92,14 @@ public class Pessoa {
         this.nome = pessoa.getNome();
         this.email = pessoa.getEmail();
         this.senha = pessoa.getSenha();
-        this.endereco = pessoa.getEndereco();
+        this.logradouro = pessoa.getLogradouro();
+        this.numero = pessoa.getNumero();
+        this.bairro = pessoa.getBairro();
+        this.cidade = pessoa.getCidade();
+        this.complemento = pessoa.getComplemento();
+        this.cep = pessoa.getCep();
+        this.telefone = pessoa.getTelefone();
+        this.pontoReferencia = pessoa.getPontoReferencia();
         this.tipoPessoa = pessoa.getTipoPessoa();
     }
 

@@ -2,6 +2,7 @@ package com.akemi.ecoleta.model;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import com.akemi.ecoleta.model.dto.ColetaDTO;
 import com.akemi.ecoleta.model.enums.Status;
@@ -40,8 +41,8 @@ public class Coleta {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate dataColeta;
 
-    @Column(name = "horaColeta", nullable = false)
-    private LocalDateTime horaColeta;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
+    private LocalTime horaColeta;
 
     @ManyToOne
     @JsonBackReference

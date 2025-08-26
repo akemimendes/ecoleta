@@ -34,9 +34,7 @@ public class PessoaServiceImpl implements PessoaService {
 
     @Override
     public Pessoa createPessoa(PessoaDTO usuario) {
-        if (usuario.getId_usuario() != null && pessoaRepository.existsById(usuario.getId_usuario())) {
-            throw new IllegalArgumentException("O usuario ID já existe.");
-        } 
+       
         if (existsByCpfCnpj(usuario.getCpfCnpj())) {
             throw new DataIntegrityViolationException("CPF já cadastrado no sistema.");
         }
@@ -44,7 +42,8 @@ public class PessoaServiceImpl implements PessoaService {
     }
 
     @Override
-    public Pessoa updatePessoa(PessoaDTO usuario) {
+    public Pessoa updatePessoa(Long id,PessoaDTO usuario) {
+        usuario.setId_usuario(id);
         if (!pessoaRepository.existsById(usuario.getId_usuario())) {
             throw new IllegalArgumentException("Usuário não encontrado.");
         }

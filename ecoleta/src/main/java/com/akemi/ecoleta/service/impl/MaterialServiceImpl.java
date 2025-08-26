@@ -34,7 +34,8 @@ public class MaterialServiceImpl implements MaterialService {
     }
 
     @Override
-    public Material updateMaterial(MaterialDTO material) {
+    public Material updateMaterial(Long id,MaterialDTO material) {
+        material.setId_material(id);
         if (!materialRepository.existsById(material.getId_material())) {
             throw new IllegalArgumentException("Material não encontrado no sistema.");
         }

@@ -1,8 +1,8 @@
 package com.akemi.ecoleta.model.dto;
 
-import com.akemi.ecoleta.model.Endereco;
 import com.akemi.ecoleta.model.Pessoa;
 import com.akemi.ecoleta.model.enums.TipoPessoa;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -20,12 +20,25 @@ public class PessoaDTO {
 
     private String senha;
 
-    private Endereco endereco;
+    private String logradouro;
+
+    private int numero;
+
+    private String bairro;
+
+    private String cidade;
+
+    private String complemento;
+
+    private String cep;
+
+    private String telefone;
+
+    private String pontoReferencia;
 
     private TipoPessoa tipoPessoa;
 
-
-    //convertendo para DTO
+    // convertendo para DTO
     public PessoaDTO(Pessoa pessoa) {
 
         this.id_usuario = pessoa.getId_usuario();
@@ -33,7 +46,14 @@ public class PessoaDTO {
         this.nome = pessoa.getNome();
         this.email = pessoa.getEmail();
         this.senha = pessoa.getSenha();
-        this.endereco = pessoa.getEndereco();
+        this.logradouro = pessoa.getLogradouro();
+        this.numero = pessoa.getNumero();
+        this.bairro = pessoa.getBairro();
+        this.cidade = pessoa.getCidade();
+        this.complemento = pessoa.getComplemento();
+        this.cep = pessoa.getCep();
+        this.telefone = pessoa.getTelefone();
+        this.pontoReferencia = pessoa.getPontoReferencia();
         this.tipoPessoa = pessoa.getTipoPessoa();
     }
 
