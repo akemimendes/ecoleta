@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import com.akemi.ecoleta.model.dto.VendaDTO;
 import com.akemi.ecoleta.model.enums.Status;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Column;
@@ -25,6 +26,9 @@ import lombok.NoArgsConstructor;
 @Entity
 public class Venda {
 
+    @SuppressWarnings("unused")
+    private static final long serialVersionID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_venda;
@@ -33,6 +37,7 @@ public class Venda {
     private LocalDateTime data_venda;
 
     @ManyToOne
+    @JsonBackReference    
     @JoinColumn(name = "id_material", referencedColumnName = "id_material", nullable = false)
     private Material material;
 
@@ -40,10 +45,12 @@ public class Venda {
     private float quantidade_kg;
 
     @ManyToOne
-    @JoinColumn(name = "id_veiculo", referencedColumnName = "id_veiculo", nullable = false)
+    @JsonBackReference
+    @JoinColumn(name = "id_veiculo", referencedColumnName = "id_veiculo")
     private Veiculo veiculo;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "id_industria", referencedColumnName = "id_usuario", nullable = false)
     private Pessoa industria;
 

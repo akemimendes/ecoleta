@@ -10,8 +10,8 @@ import com.akemi.ecoleta.model.Pessoa;
 @Repository
 public interface PessoaRepository extends JpaRepository<Pessoa, Long>{
 
-     boolean existsByCpf_cnpj(String cpf_cnpj);
+     boolean existsByCpfCnpj(String cpfCnpj);
 
-     Optional<Pessoa> findByCpf_cnpj(String cpf_cnpj);
+     Optional<Pessoa> findByCpfCnpj(String cpfCnpj);
      
 }

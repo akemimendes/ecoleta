@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.akemi.ecoleta.service.ColetaService;
 
 @RestController
-@RequestMapping("/coletas")
+@RequestMapping("coletas")
 public class ColetaController {
 
     private final ColetaService coletaService;

@@ -31,13 +31,12 @@ public class ColetaServiceImpl implements ColetaService {
     }
 
     @Override
-    public Coleta createColeta(ColetaDTO coleta) {
-        Coleta novaColeta=new Coleta(coleta);
-        return coletaRepository.save(novaColeta);
+    public Coleta createColeta(Coleta coleta) {
+        return coletaRepository.save(coleta);
     }
 
     @Override
-    public Coleta updateColeta(ColetaDTO coleta) {
+    public Coleta updateColeta(Coleta coleta) {
         if (!coletaRepository.existsById(coleta.getId_coleta())) {
             throw new IllegalArgumentException("Coleta não encontrada no sistema.");
         }
@@ -52,4 +51,5 @@ public class ColetaServiceImpl implements ColetaService {
         coletaRepository.deleteById(id_coleta);
     }
 
+    
 }

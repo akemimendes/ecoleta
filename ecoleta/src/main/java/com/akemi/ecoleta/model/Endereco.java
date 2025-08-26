@@ -17,6 +17,9 @@ import lombok.NoArgsConstructor;
 @Entity
 public class Endereco {
 
+    @SuppressWarnings("unused")
+    private static final long serialVersionID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_endereco;

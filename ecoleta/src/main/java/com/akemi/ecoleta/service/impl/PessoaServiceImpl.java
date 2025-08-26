@@ -37,7 +37,7 @@ public class PessoaServiceImpl implements PessoaService {
         if (usuario.getId_usuario() != null && pessoaRepository.existsById(usuario.getId_usuario())) {
             throw new IllegalArgumentException("O usuario ID já existe.");
         } 
-        if (existsByCpf_cnpj(usuario.getCpf_cnpj())) {
+        if (existsByCpfCnpj(usuario.getCpfCnpj())) {
             throw new DataIntegrityViolationException("CPF já cadastrado no sistema.");
         }
         return pessoaRepository.save(usuario);
@@ -48,7 +48,7 @@ public class PessoaServiceImpl implements PessoaService {
         if (!pessoaRepository.existsById(usuario.getId_usuario())) {
             throw new IllegalArgumentException("Usuário não encontrado.");
         }
-        Optional<Pessoa> p1 = pessoaRepository.findByCpf_cnpj(usuario.getCpf_cnpj());
+        Optional<Pessoa> p1 = pessoaRepository.findByCpfCnpj(usuario.getCpfCnpj());
         if (p1.get().getId_usuario() != usuario.getId_usuario()) {
             throw new DataIntegrityViolationException("O CPF já existe cadastrado para outro usuário");
         }
@@ -65,8 +65,8 @@ public class PessoaServiceImpl implements PessoaService {
     }
 
     @Override
-    public boolean existsByCpf_cnpj(String cpf_cnpj) {
-        return pessoaRepository.existsByCpf_cnpj(cpf_cnpj);
+    public boolean existsByCpfCnpj(String cpfCnpj) {
+        return pessoaRepository.existsByCpfCnpj(cpfCnpj);
     }
 
 }

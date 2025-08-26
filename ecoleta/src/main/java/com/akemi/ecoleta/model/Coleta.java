@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 
 import com.akemi.ecoleta.model.dto.ColetaDTO;
 import com.akemi.ecoleta.model.enums.Status;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Column;
@@ -26,6 +27,9 @@ import lombok.NoArgsConstructor;
 @Entity
 public class Coleta {
 
+    @SuppressWarnings("unused")
+    private static final long serialVersionID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_coleta;
@@ -40,39 +44,45 @@ public class Coleta {
     private LocalDateTime horaColeta;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario", nullable = false)
     private Pessoa usuario;
 
     @ManyToOne
-    @JoinColumn(name = "id_colaborador", referencedColumnName = "id_usuario", nullable = false)
+    @JsonBackReference
+    @JoinColumn(name = "id_colaborador", referencedColumnName = "id_usuario")
     private Pessoa colaborador;
 
     @ManyToOne
-    @JoinColumn(name = "id_cooperativa", referencedColumnName = "id_usuario", nullable = false)
+    @JsonBackReference
+    @JoinColumn(name = "id_cooperativa", referencedColumnName = "id_usuario")
     private Pessoa cooperativa;
 
     @ManyToOne
-    @JoinColumn(name = "id_veiculo", referencedColumnName = "id_veiculo", nullable = false)
+    @JsonBackReference
+    @JoinColumn(name = "id_veiculo", referencedColumnName = "id_veiculo")
     private Veiculo veiculo;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "id_material", referencedColumnName = "id_material", nullable = false)
     private Material material;
-    
+
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
     private Status status;
 
     public Coleta(ColetaDTO coleta) {
+        this.id_coleta = coleta.getId_coleta();
         this.dataSolicitacao = coleta.getDataSolicitacao();
         this.dataColeta = coleta.getDataColeta();
         this.horaColeta = coleta.getHoraColeta();
         this.usuario = coleta.getUsuario();
-        this.colaborador=coleta.getColaborador();
-        this.cooperativa=coleta.getCooperativa();
-        this.veiculo=coleta.getVeiculo();
-        this.material=coleta.getMaterial();
-        this.status=coleta.getStatus();
+        this.colaborador = coleta.getColaborador();
+        this.cooperativa = coleta.getCooperativa();
+        this.veiculo = coleta.getVeiculo();
+        this.material = coleta.getMaterial();
+        this.status = coleta.getStatus();
     }
 
 }

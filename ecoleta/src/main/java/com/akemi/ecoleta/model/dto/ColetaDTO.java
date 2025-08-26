@@ -11,9 +11,13 @@ import com.akemi.ecoleta.model.enums.Status;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
 @Data
 public class ColetaDTO {
+
+    private Long id_coleta;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate dataSolicitacao;
@@ -35,11 +39,10 @@ public class ColetaDTO {
 
     private Status status;
 
-    public ColetaDTO() {
-
-    }
-
+  
+    //convertendo para DTO
     public ColetaDTO(Coleta coleta) {
+        this.id_coleta = coleta.getId_coleta();
         this.dataSolicitacao = coleta.getDataSolicitacao();
         this.dataColeta = coleta.getDataColeta();
         this.horaColeta = coleta.getHoraColeta();

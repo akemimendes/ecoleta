@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.akemi.ecoleta.service.PessoaService;
 
 @RestController
-@RequestMapping("/pessoas")
+@RequestMapping("pessoas")
 public class PessoaController {
 
-     private final PessoaService pessoaService;
+    private final PessoaService pessoaService;
 
     public PessoaController(PessoaService pessoaService) {
         this.pessoaService = pessoaService;

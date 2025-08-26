@@ -6,12 +6,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.akemi.ecoleta.service.MaterialService;
 
 @RestController
-@RequestMapping("/materiais")
+@RequestMapping("materiais")
 public class MaterialController {
 
-     private final MaterialService materialService;
+    private final MaterialService materialService;
 
-    public MaterialController(MaterialService materialService){
-        this.materialService=materialService;
+    public MaterialController(MaterialService materialService) {
+        this.materialService = materialService;
     }
 }

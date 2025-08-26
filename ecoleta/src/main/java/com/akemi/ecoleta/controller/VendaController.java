@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.akemi.ecoleta.service.VendaService;
 
 @RestController
-@RequestMapping("/vendas")
+@RequestMapping("vendas")
 public class VendaController {
 
 

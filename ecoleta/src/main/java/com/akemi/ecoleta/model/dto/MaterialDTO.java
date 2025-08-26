@@ -1,14 +1,12 @@
 package com.akemi.ecoleta.model.dto;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.akemi.ecoleta.model.Coleta;
 import com.akemi.ecoleta.model.Material;
-import com.akemi.ecoleta.model.Venda;
+
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
 @Data
 public class MaterialDTO {
 
@@ -20,19 +18,12 @@ public class MaterialDTO {
 
     private float kg_disponivel;
 
-    private List<Venda> vendas = new ArrayList<Venda>();
 
-    private List<Coleta> coletas = new ArrayList<Coleta>();
-
-    public MaterialDTO() {
-
-    }
-
+    //convertendo para DTO
     public MaterialDTO(Material material) {
+        this.id_material= material.getId_material();
         this.descricao = material.getDescricao();
         this.valor = material.getValor();
         this.kg_disponivel = material.getKg_disponivel();
-        this.vendas = material.getVendas();
-        this.coletas = material.getColetas();
     }
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.akemi.ecoleta.model.dto.VeiculoDTO;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
@@ -21,7 +22,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @Entity
-public class Veiculo {
+public class Veiculo{
+
+    private static final long serialVersionID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,22 +38,22 @@ public class Veiculo {
     @Column(name = "ano_modelo", nullable = false)
     private String ano_modelo;
 
-    @OneToMany(mappedBy = "veiculo", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "veiculo", fetch = FetchType.EAGER)
     @JsonManagedReference
+    @JsonIgnore
     private List<Coleta> coletas = new ArrayList<Coleta>();
 
-    @OneToMany(mappedBy = "veiculo", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "veiculo", fetch = FetchType.EAGER)
     @JsonManagedReference
+    @JsonIgnore
     private List<Venda> vendas = new ArrayList<Venda>();
 
     public Veiculo(VeiculoDTO veiculo) {
-        this.id_veiculo=veiculo.getId_veiculo();
+        this.id_veiculo = veiculo.getId_veiculo();
         this.placa = veiculo.getPlaca();
         this.modelo = veiculo.getModelo();
         this.marca = veiculo.getMarca();
         this.ano_modelo = veiculo.getAno_modelo();
-        this.coletas = veiculo.getColetas();
-        this.vendas = veiculo.getVendas();
     }
 
 }

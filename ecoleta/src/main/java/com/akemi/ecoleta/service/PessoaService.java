@@ -16,6 +16,6 @@ public interface PessoaService {
 
     void deletePessoa(long id_usuario);
 
-     boolean existsByCpf_cnpj(String cpf_cnpj);
+    boolean existsByCpfCnpj(String cpfCnpj);
 
 }

@@ -28,12 +28,16 @@ import lombok.NoArgsConstructor;
 @Entity
 public class Pessoa {
 
+
+    @SuppressWarnings("unused")
+    private static final long serialVersionID= 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_usuario;
 
-    @Column(name = "cpf_cnpj", nullable = false, unique = true)
-    private String cpf_cnpj;
+    @Column(name = "cpfCnpj", nullable = false, unique = true)
+    private String cpfCnpj;
 
     @Column(name = "nome", nullable = false)
     private String nome;
@@ -61,7 +65,7 @@ public class Pessoa {
 
     public Pessoa(PessoaDTO pessoa) {
         this.id_usuario = pessoa.getId_usuario();
-        this.cpf_cnpj = pessoa.getCpf_cnpj();
+        this.cpfCnpj = pessoa.getCpfCnpj();
         this.nome = pessoa.getNome();
         this.email = pessoa.getEmail();
         this.senha = pessoa.getSenha();
