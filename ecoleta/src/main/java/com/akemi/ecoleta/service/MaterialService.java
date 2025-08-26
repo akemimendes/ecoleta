@@ -14,7 +14,7 @@ public interface MaterialService {
 
     Material createMaterial(MaterialDTO material);
 
-    Material updateMaterial(MaterialDTO material);
+    Material updateMaterial(Long id,MaterialDTO material);
 
     void deleteMaterial(long id_material);
 

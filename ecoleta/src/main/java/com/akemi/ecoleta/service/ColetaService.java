@@ -14,7 +14,7 @@ public interface ColetaService {
 
     Coleta createColeta(ColetaDTO coleta);
 
-    Coleta updateColeta(ColetaDTO coleta);
+    Coleta updateColeta(Long id,ColetaDTO coleta);
 
     void deleteColeta(long id_coleta);
 }

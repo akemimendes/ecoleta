@@ -34,7 +34,8 @@ public class ColetaServiceImpl implements ColetaService {
     }
 
     @Override
-    public Coleta updateColeta(ColetaDTO coleta) {
+    public Coleta updateColeta(Long id,ColetaDTO coleta) {
+        coleta.setId_coleta(id);
         if (!coletaRepository.existsById(coleta.getId_coleta())) {
             throw new IllegalArgumentException("Coleta não encontrada no sistema.");
         }
