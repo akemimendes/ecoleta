@@ -1,18 +1,19 @@
 package com.akemi.ecoleta.service;
 
 import com.akemi.ecoleta.model.Pessoa;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import com.akemi.ecoleta.model.dto.PessoaDTO;
+
+import java.util.List;
 
 public interface PessoaService {
 
-    Page<Pessoa> getPessoa(Pageable pageable);
+    List<Pessoa> getPessoa();
 
     Pessoa getPessoaById(long id_usuario);
 
-    Pessoa createPessoa(Pessoa usuario);
+    Pessoa createPessoa(PessoaDTO usuario);
 
-    Pessoa updatePessoa(Pessoa usuario);
+    Pessoa updatePessoa(PessoaDTO usuario);
 
     void deletePessoa(long id_usuario);
 

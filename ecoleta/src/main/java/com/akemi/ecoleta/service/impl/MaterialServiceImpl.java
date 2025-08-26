@@ -1,12 +1,11 @@
 package com.akemi.ecoleta.service.impl;
 
+import java.util.List;
 import java.util.NoSuchElementException;
-
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.akemi.ecoleta.model.Material;
+import com.akemi.ecoleta.model.dto.MaterialDTO;
 import com.akemi.ecoleta.repository.MaterialRepository;
 import com.akemi.ecoleta.service.MaterialService;
 
@@ -20,8 +19,8 @@ public class MaterialServiceImpl implements MaterialService {
     }
 
     @Override
-    public Page<Material> getMaterial(Pageable pageable) {
-        return materialRepository.findAll(pageable);
+    public List<Material> getMaterial() {
+        return materialRepository.findAll();
     }
 
     @Override
@@ -30,16 +29,16 @@ public class MaterialServiceImpl implements MaterialService {
     }
 
     @Override
-    public Material createMaterial(Material material) {
-        return materialRepository.save(material);
+    public Material createMaterial(MaterialDTO material) {
+        return materialRepository.save(new Material(material));
     }
 
     @Override
-    public Material updateMaterial(Material material) {
+    public Material updateMaterial(MaterialDTO material) {
         if (!materialRepository.existsById(material.getId_material())) {
             throw new IllegalArgumentException("Material não encontrado no sistema.");
         }
-        return materialRepository.save(material);
+        return materialRepository.save(new Material(material));
     }
 
     @Override

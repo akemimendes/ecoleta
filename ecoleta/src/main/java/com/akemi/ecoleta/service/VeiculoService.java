@@ -1,20 +1,20 @@
 package com.akemi.ecoleta.service;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import java.util.List;
 
 import com.akemi.ecoleta.model.Veiculo;
+import com.akemi.ecoleta.model.dto.VeiculoDTO;
 
 
 public interface VeiculoService {
 
-    Page<Veiculo> getVeiculo(Pageable pageable);
+    List<Veiculo> getVeiculo();
 
     Veiculo getVeiculoById(long id_venda);
 
-    Veiculo createVeiculo(Veiculo veiculo);
+    Veiculo createVeiculo(VeiculoDTO veiculo);
 
-    Veiculo updateVeiculo(Veiculo veiculo);
+    Veiculo updateVeiculo(Long id,VeiculoDTO veiculo);
 
     void deleteVeiculo(long id_veiculo);
 

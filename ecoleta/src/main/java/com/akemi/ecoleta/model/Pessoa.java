@@ -71,8 +71,6 @@ public class Pessoa {
         this.senha = pessoa.getSenha();
         this.endereco = pessoa.getEndereco();
         this.tipoPessoa = pessoa.getTipoPessoa();
-        this.coletas = pessoa.getColetas();
-        this.vendas = pessoa.getVendas();
     }
 
 }

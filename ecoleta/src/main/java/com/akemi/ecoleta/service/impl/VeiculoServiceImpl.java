@@ -1,14 +1,14 @@
 package com.akemi.ecoleta.service.impl;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.akemi.ecoleta.model.Veiculo;
+import com.akemi.ecoleta.model.dto.VeiculoDTO;
 import com.akemi.ecoleta.repository.VeiculoRepository;
 import com.akemi.ecoleta.service.VeiculoService;
 
@@ -22,8 +22,8 @@ public class VeiculoServiceImpl implements VeiculoService {
     }
 
     @Override
-    public Page<Veiculo> getVeiculo(Pageable pageable) {
-        return veiculoRepository.findAll(pageable);
+    public List<Veiculo> getVeiculo() {
+        return veiculoRepository.findAll();
     }
 
     @Override
@@ -32,17 +32,18 @@ public class VeiculoServiceImpl implements VeiculoService {
     }
 
     @Override
-    public Veiculo createVeiculo(Veiculo veiculo) {
+    public Veiculo createVeiculo(VeiculoDTO veiculo) {
         if (veiculo.getId_veiculo() != null && veiculoRepository.existsById(veiculo.getId_veiculo())) {
             throw new IllegalArgumentException("O veículo ID já existe.");
         } else if (existePlaca(veiculo.getPlaca())) {
             throw new DataIntegrityViolationException("Placa já cadastrada no sistema.");
         }
-        return veiculoRepository.save(veiculo);
+        return veiculoRepository.save(new Veiculo(veiculo));
     }
 
     @Override
-    public Veiculo updateVeiculo(Veiculo veiculo) {
+    public Veiculo updateVeiculo(Long id,VeiculoDTO veiculo) {
+        veiculo.setId_veiculo(id);
         if (!veiculoRepository.existsById(veiculo.getId_veiculo())) {
             throw new IllegalArgumentException("Veículo não foi encontrado.");
         }
@@ -50,7 +51,7 @@ public class VeiculoServiceImpl implements VeiculoService {
         if (v1.get().getId_veiculo() != veiculo.getId_veiculo()) {
             throw new DataIntegrityViolationException("A Placa já existe cadastrada para outro veículo");
         }
-        return veiculoRepository.save(veiculo);
+        return veiculoRepository.save(new Veiculo(veiculo));
     }
 
     @Override

@@ -1,19 +1,19 @@
 package com.akemi.ecoleta.service;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import java.util.List;
 
 import com.akemi.ecoleta.model.Venda;
+import com.akemi.ecoleta.model.dto.VendaDTO;
 
 public interface VendaService {
 
-    Page<Venda> getVenda(Pageable pageable);
+    List<Venda> getVenda();
 
     Venda getVendaById(long id_venda);
 
-    Venda createVenda(Venda venda);
+    Venda createVenda(VendaDTO venda);
 
-    Venda updateVenda(Venda venda);
+    Venda updateVenda(VendaDTO venda);
 
     void deleteVenda(long id_venda);
 }

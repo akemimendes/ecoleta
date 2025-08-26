@@ -1,20 +1,20 @@
 package com.akemi.ecoleta.service;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import java.util.List;
 
 import com.akemi.ecoleta.model.Material;
+import com.akemi.ecoleta.model.dto.MaterialDTO;
 
 
 public interface MaterialService {
 
-    Page<Material> getMaterial(Pageable pageable);
+    List<Material> getMaterial();
 
     Material getMaterialById(long id_material);
 
-    Material createMaterial(Material material);
+    Material createMaterial(MaterialDTO material);
 
-    Material updateMaterial(Material material);
+    Material updateMaterial(MaterialDTO material);
 
     void deleteMaterial(long id_material);
 

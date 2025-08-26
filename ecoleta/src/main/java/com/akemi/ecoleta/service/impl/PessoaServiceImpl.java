@@ -1,14 +1,14 @@
 package com.akemi.ecoleta.service.impl;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.akemi.ecoleta.model.Pessoa;
+import com.akemi.ecoleta.model.dto.PessoaDTO;
 import com.akemi.ecoleta.repository.PessoaRepository;
 import com.akemi.ecoleta.service.PessoaService;
 
@@ -23,8 +23,8 @@ public class PessoaServiceImpl implements PessoaService {
     }
 
     @Override
-    public Page<Pessoa> getPessoa(Pageable pageable) {
-        return pessoaRepository.findAll(pageable);
+    public List<Pessoa> getPessoa() {
+        return pessoaRepository.findAll();
     }
 
     @Override
@@ -33,18 +33,18 @@ public class PessoaServiceImpl implements PessoaService {
     }
 
     @Override
-    public Pessoa createPessoa(Pessoa usuario) {
+    public Pessoa createPessoa(PessoaDTO usuario) {
         if (usuario.getId_usuario() != null && pessoaRepository.existsById(usuario.getId_usuario())) {
             throw new IllegalArgumentException("O usuario ID já existe.");
         } 
         if (existsByCpfCnpj(usuario.getCpfCnpj())) {
             throw new DataIntegrityViolationException("CPF já cadastrado no sistema.");
         }
-        return pessoaRepository.save(usuario);
+        return pessoaRepository.save(new Pessoa(usuario));
     }
 
     @Override
-    public Pessoa updatePessoa(Pessoa usuario) {
+    public Pessoa updatePessoa(PessoaDTO usuario) {
         if (!pessoaRepository.existsById(usuario.getId_usuario())) {
             throw new IllegalArgumentException("Usuário não encontrado.");
         }
@@ -53,7 +53,7 @@ public class PessoaServiceImpl implements PessoaService {
             throw new DataIntegrityViolationException("O CPF já existe cadastrado para outro usuário");
         }
 
-        return pessoaRepository.save(usuario);
+        return pessoaRepository.save(new Pessoa(usuario));
     }
 
     @Override

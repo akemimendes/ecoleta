@@ -1,9 +1,7 @@
 package com.akemi.ecoleta.service.impl;
 
+import java.util.List;
 import java.util.NoSuchElementException;
-
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.akemi.ecoleta.model.Coleta;
@@ -21,8 +19,8 @@ public class ColetaServiceImpl implements ColetaService {
     }
 
     @Override
-    public Page<Coleta> getColeta(Pageable pageable) {
-        return coletaRepository.findAll(pageable);
+    public List<Coleta> getColeta() {
+        return coletaRepository.findAll();
     }
 
     @Override
@@ -31,16 +29,16 @@ public class ColetaServiceImpl implements ColetaService {
     }
 
     @Override
-    public Coleta createColeta(Coleta coleta) {
-        return coletaRepository.save(coleta);
+    public Coleta createColeta(ColetaDTO coleta) {
+        return coletaRepository.save(new Coleta(coleta));
     }
 
     @Override
-    public Coleta updateColeta(Coleta coleta) {
+    public Coleta updateColeta(ColetaDTO coleta) {
         if (!coletaRepository.existsById(coleta.getId_coleta())) {
             throw new IllegalArgumentException("Coleta não encontrada no sistema.");
         }
-        return coletaRepository.save(coleta);
+        return coletaRepository.save(new Coleta(coleta));
     }
 
     @Override

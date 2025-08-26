@@ -52,7 +52,5 @@ public class Material {
         this.descricao = material.getDescricao();
         this.valor = material.getValor();
         this.kg_disponivel = material.getKg_disponivel();
-        this.vendas = material.getVendas();
-        this.coletas = material.getColetas();
     }
 }
