@@ -8,10 +8,12 @@ import org.springframework.stereotype.Repository;
 import com.akemi.ecoleta.model.Pessoa;
 
 @Repository
-public interface PessoaRepository extends JpaRepository<Pessoa, Long>{
+public interface PessoaRepository extends JpaRepository<Pessoa, Long> {
 
      boolean existsByCpfCnpj(String cpfCnpj);
 
      Optional<Pessoa> findByCpfCnpj(String cpfCnpj);
-     
+
+     Optional<Pessoa> findByEmail(String email);
+
 }

@@ -1,15 +1,19 @@
 package com.akemi.ecoleta.model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.akemi.ecoleta.model.dto.PessoaDTO;
 import com.akemi.ecoleta.model.enums.TipoPessoa;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import jakarta.persistence.CascadeType;
+import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -18,7 +22,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -48,9 +51,9 @@ public class Pessoa {
     @Column(name = "senha", nullable = false)
     private String senha;
 
-    @Column(name = "status", nullable = false)
-    @Enumerated(EnumType.STRING)
-    private TipoPessoa tipoPessoa;
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "perfis")
+    private Set<Integer> perfis = new HashSet<>();
 
     @OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
     @JsonManagedReference
@@ -100,7 +103,15 @@ public class Pessoa {
         this.cep = pessoa.getCep();
         this.telefone = pessoa.getTelefone();
         this.pontoReferencia = pessoa.getPontoReferencia();
-        this.tipoPessoa = pessoa.getTipoPessoa();
+        addPerfil(TipoPessoa.ADMIN);
+    }
+
+    public Set<TipoPessoa> getPerfis() {
+        return perfis.stream().map(x -> TipoPessoa.toEnum(x)).collect(Collectors.toSet());
+    }
+
+    public void addPerfil(TipoPessoa perfis) {
+        this.perfis.add(perfis.getCodigo());
     }
 
 }

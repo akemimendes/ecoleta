@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.akemi.ecoleta.model.Pessoa;
@@ -16,6 +18,8 @@ import com.akemi.ecoleta.service.PessoaService;
 public class PessoaServiceImpl implements PessoaService {
 
     private final PessoaRepository pessoaRepository;
+    @Autowired
+	private PasswordEncoder encoder;
 
     public PessoaServiceImpl(PessoaRepository pessoaRepository) {
         this.pessoaRepository = pessoaRepository;
@@ -34,11 +38,12 @@ public class PessoaServiceImpl implements PessoaService {
 
     @Override
     public Pessoa createPessoa(PessoaDTO usuario) {
-       
+        Pessoa novoUsuario= new Pessoa(usuario);
+        novoUsuario.setSenha(encoder.encode(usuario.getSenha()));
         if (existsByCpfCnpj(usuario.getCpfCnpj())) {
             throw new DataIntegrityViolationException("CPF já cadastrado no sistema.");
         }
-        return pessoaRepository.save(new Pessoa(usuario));
+        return pessoaRepository.save(novoUsuario);
     }
 
     @Override

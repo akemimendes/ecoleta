@@ -1,5 +1,8 @@
 package com.akemi.ecoleta.model.dto;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import com.akemi.ecoleta.model.Pessoa;
 import com.akemi.ecoleta.model.enums.TipoPessoa;
 
@@ -36,7 +39,7 @@ public class PessoaDTO {
 
     private String pontoReferencia;
 
-    private TipoPessoa tipoPessoa;
+    private  Set<Integer> perfis=new HashSet<>();
 
     // convertendo para DTO
     public PessoaDTO(Pessoa pessoa) {
@@ -54,7 +57,10 @@ public class PessoaDTO {
         this.cep = pessoa.getCep();
         this.telefone = pessoa.getTelefone();
         this.pontoReferencia = pessoa.getPontoReferencia();
-        this.tipoPessoa = pessoa.getTipoPessoa();
+        addPerfil(TipoPessoa.ADMIN);
     }
 
+    public void addPerfil(TipoPessoa perfis) {
+        this.perfis.add(perfis.getCodigo());
+    }
 }

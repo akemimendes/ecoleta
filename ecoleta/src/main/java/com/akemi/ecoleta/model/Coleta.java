@@ -1,7 +1,6 @@
 package com.akemi.ecoleta.model;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import com.akemi.ecoleta.model.dto.ColetaDTO;

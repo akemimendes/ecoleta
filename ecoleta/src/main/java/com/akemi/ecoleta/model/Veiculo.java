@@ -24,6 +24,7 @@ import lombok.NoArgsConstructor;
 @Entity
 public class Veiculo{
 
+    @SuppressWarnings("unused")
     private static final long serialVersionID = 1L;
 
     @Id
