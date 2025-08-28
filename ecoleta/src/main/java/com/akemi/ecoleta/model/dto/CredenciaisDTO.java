@@ -1,23 +1,16 @@
 package com.akemi.ecoleta.model.dto;
 
-public class CredenciaisDTO {
+import java.io.Serializable;
+
+import lombok.Data;
+
+@Data
+public class CredenciaisDTO implements Serializable{
+
+    public static final long serialVersionUID=1L;
 
     private String email;
     private String senha;
-    
-    public String getEmail() {
-        return email;
-    }
-    public void setEmail(String email) {
-        this.email = email;
-    }
-    public String getSenha() {
-        return senha;
-    }
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-    
+       
 
 }

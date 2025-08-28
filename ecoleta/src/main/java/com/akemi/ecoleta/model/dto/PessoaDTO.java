@@ -1,66 +1,44 @@
 package com.akemi.ecoleta.model.dto;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
-
-import com.akemi.ecoleta.model.Pessoa;
-import com.akemi.ecoleta.model.enums.TipoPessoa;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @Data
-public class PessoaDTO {
+public class PessoaDTO implements Serializable{
 
-    private Long id_usuario;
+    public static final long serialVersionUID = 1L;
 
-    private String cpfCnpj;
+    protected Long id;
 
-    private String nome;
+    protected String cpfCnpj;
 
-    private String email;
+    protected String nome;
 
-    private String senha;
+    protected String email;
 
-    private String logradouro;
+    protected String senha;
 
-    private int numero;
+    protected String logradouro;
 
-    private String bairro;
+    protected int numero;
 
-    private String cidade;
+    protected String bairro;
 
-    private String complemento;
+    protected String cidade;
 
-    private String cep;
+    protected String complemento;
 
-    private String telefone;
+    protected String cep;
 
-    private String pontoReferencia;
+    protected String telefone;
 
-    private  Set<Integer> perfis=new HashSet<>();
+    protected String pontoReferencia;
 
-    // convertendo para DTO
-    public PessoaDTO(Pessoa pessoa) {
+    protected Set<Integer> perfis = new HashSet<>();
 
-        this.id_usuario = pessoa.getId_usuario();
-        this.cpfCnpj = pessoa.getCpfCnpj();
-        this.nome = pessoa.getNome();
-        this.email = pessoa.getEmail();
-        this.senha = pessoa.getSenha();
-        this.logradouro = pessoa.getLogradouro();
-        this.numero = pessoa.getNumero();
-        this.bairro = pessoa.getBairro();
-        this.cidade = pessoa.getCidade();
-        this.complemento = pessoa.getComplemento();
-        this.cep = pessoa.getCep();
-        this.telefone = pessoa.getTelefone();
-        this.pontoReferencia = pessoa.getPontoReferencia();
-        addPerfil(TipoPessoa.ADMIN);
-    }
-
-    public void addPerfil(TipoPessoa perfis) {
-        this.perfis.add(perfis.getCodigo());
-    }
 }

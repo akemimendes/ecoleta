@@ -51,8 +51,8 @@ public class Venda {
 
     @ManyToOne
     @JsonBackReference
-    @JoinColumn(name = "id_industria", referencedColumnName = "id_usuario", nullable = false)
-    private Pessoa industria;
+    @JoinColumn(name = "id_industria", referencedColumnName = "id", nullable = false)
+    private Industria industria;
 
     @Column(name = "status", nullable = false)
     @Enumerated(EnumType.STRING)

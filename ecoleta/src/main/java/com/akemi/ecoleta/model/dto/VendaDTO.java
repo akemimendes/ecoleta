@@ -1,9 +1,10 @@
 package com.akemi.ecoleta.model.dto;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
+import com.akemi.ecoleta.model.Industria;
 import com.akemi.ecoleta.model.Material;
-import com.akemi.ecoleta.model.Pessoa;
 import com.akemi.ecoleta.model.Veiculo;
 import com.akemi.ecoleta.model.Venda;
 import com.akemi.ecoleta.model.enums.Status;
@@ -14,7 +15,9 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @Data
-public class VendaDTO {
+public class VendaDTO implements Serializable {
+
+    public static final long serialVersionUID=1L;
 
     private Long id_venda;
 
@@ -27,7 +30,7 @@ public class VendaDTO {
 
     private Veiculo veiculo;
 
-    private Pessoa industria;
+    private Industria industria;
 
     private Status status;
 

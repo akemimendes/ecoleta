@@ -45,18 +45,18 @@ public class Coleta {
 
     @ManyToOne
     @JsonBackReference
-    @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario", nullable = false)
-    private Pessoa usuario;
+    @JoinColumn(name = "id_usuario", referencedColumnName = "id", nullable = false)
+    private Usuario usuario;
 
     @ManyToOne
     @JsonBackReference
-    @JoinColumn(name = "id_colaborador", referencedColumnName = "id_usuario")
-    private Pessoa colaborador;
+    @JoinColumn(name = "id_colaborador", referencedColumnName = "id")
+    private Colaborador colaborador;
 
     @ManyToOne
     @JsonBackReference
-    @JoinColumn(name = "id_cooperativa", referencedColumnName = "id_usuario")
-    private Pessoa cooperativa;
+    @JoinColumn(name = "id_cooperativa", referencedColumnName = "id")
+    private Cooperativa cooperativa;
 
     @ManyToOne
     @JsonBackReference

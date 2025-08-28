@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @Entity
-public class Material {
+public class Material{
 
     @SuppressWarnings("unused")
     private static final long serialVersionID = 1L;

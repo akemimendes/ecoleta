@@ -1,5 +1,7 @@
 package com.akemi.ecoleta.model.dto;
 
+import java.io.Serializable;
+
 import com.akemi.ecoleta.model.Material;
 
 
@@ -8,7 +10,9 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @Data
-public class MaterialDTO {
+public class MaterialDTO implements Serializable{
+
+    public static final long serialVersionUID=1L;
 
     private Long id_material;
 

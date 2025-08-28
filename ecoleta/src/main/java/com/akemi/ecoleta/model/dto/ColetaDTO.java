@@ -1,11 +1,14 @@
 package com.akemi.ecoleta.model.dto;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import com.akemi.ecoleta.model.Colaborador;
 import com.akemi.ecoleta.model.Coleta;
+import com.akemi.ecoleta.model.Cooperativa;
 import com.akemi.ecoleta.model.Material;
-import com.akemi.ecoleta.model.Pessoa;
+import com.akemi.ecoleta.model.Usuario;
 import com.akemi.ecoleta.model.Veiculo;
 import com.akemi.ecoleta.model.enums.Status;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -15,7 +18,9 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @Data
-public class ColetaDTO {
+public class ColetaDTO implements Serializable{
+
+    public static final long serialVersionUID=1L;
 
     private Long id_coleta;
 
@@ -28,11 +33,11 @@ public class ColetaDTO {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
     private LocalTime horaColeta;
 
-    private Pessoa usuario;
+    private Usuario usuario;
 
-    private Pessoa colaborador;
+    private Colaborador colaborador;
 
-    private Pessoa cooperativa;
+    private Cooperativa cooperativa;
 
     private Veiculo veiculo;
 

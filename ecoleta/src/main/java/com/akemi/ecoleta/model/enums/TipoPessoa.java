@@ -2,7 +2,7 @@ package com.akemi.ecoleta.model.enums;
 
 public enum TipoPessoa {
 
-     USUARIO(0, "ROLE_USUARIO"), COLABORADOR(1, "ROLE_COLABORADOR"), COOPERATIVA(2, "ROLE_COOPERATIVA"), INDUSTRIA(3, "ROLE_INDUSTRIA"), ADMIN(3, "ROLE_ADMIN");
+     USUARIO(0, "ROLE_USUARIO"), COLABORADOR(1, "ROLE_COLABORADOR"), COOPERATIVA(2, "ROLE_COOPERATIVA"), INDUSTRIA(3, "ROLE_INDUSTRIA"), ADMIN(4, "ROLE_ADMIN");
 
      private Integer codigo;
      private String descricao;
