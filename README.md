@@ -114,8 +114,6 @@ classDiagram
 
    %% Relacionamentos
 
-%% Pessoa -> Endereco (Composição)
-Pessoa *-- Endereco : possui
 
 %% Coleta -> Pessoa (usuário, colaborador, cooperativa)
 Coleta "N" -- * "1" Pessoa : usuario
