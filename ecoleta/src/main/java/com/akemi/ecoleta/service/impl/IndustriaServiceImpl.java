@@ -56,8 +56,10 @@ public class IndustriaServiceImpl implements IndustriaService {
             throw new IllegalArgumentException("Usuário não encontrado.");
         }
         Optional<Industria> p1 = industriaRepository.findByCpfCnpj(industria.getCpfCnpj());
-        if (p1.get().getId() != industria.getId()) {
-            throw new DataIntegrityViolationException("O CNPJ já existe cadastrado para outro usuário");
+        if (p1.isPresent()) {
+            if (p1.get().getId() != industria.getId()) {
+                throw new DataIntegrityViolationException("O CNPJ já existe cadastrado para outro usuário");
+            }
         }
         return industriaRepository.save(new Industria(industria));
     }

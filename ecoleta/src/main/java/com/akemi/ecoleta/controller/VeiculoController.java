@@ -20,6 +20,8 @@ import com.akemi.ecoleta.model.Veiculo;
 import com.akemi.ecoleta.model.dto.VeiculoDTO;
 import com.akemi.ecoleta.service.VeiculoService;
 
+import jakarta.validation.Valid;
+
 @PreAuthorize("hasAnyRole('ADMIN')")
 @RestController
 @RequestMapping("veiculos")
@@ -52,7 +54,7 @@ public class VeiculoController {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<VeiculoDTO> update(@PathVariable Long id,@RequestBody VeiculoDTO veiculo) {
+    public ResponseEntity<VeiculoDTO> update(@PathVariable Long id,@Valid @RequestBody VeiculoDTO veiculo) {
         veiculoService.updateVeiculo(id,veiculo);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(veiculo.getId_veiculo())
                 .toUri();
@@ -60,7 +62,7 @@ public class VeiculoController {
     }
 
     @PostMapping
-    public ResponseEntity<VeiculoDTO> create(@RequestBody VeiculoDTO veiculo) {
+    public ResponseEntity<VeiculoDTO> create(@Valid @RequestBody VeiculoDTO veiculo) {
         veiculoService.createVeiculo(veiculo);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(veiculo.getId_veiculo())
                 .toUri();

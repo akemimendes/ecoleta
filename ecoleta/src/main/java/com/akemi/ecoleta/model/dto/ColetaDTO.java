@@ -13,6 +13,7 @@ import com.akemi.ecoleta.model.Veiculo;
 import com.akemi.ecoleta.model.enums.Status;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -27,9 +28,11 @@ public class ColetaDTO implements Serializable{
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate dataSolicitacao=LocalDate.now();
 
+    @NotNull(message="O campo DATA DA COLETA é obrigatório")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate dataColeta;
 
+    @NotNull(message="O campo HORA DA COLETA é obrigatório")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
     private LocalTime horaColeta;
 
@@ -41,6 +44,7 @@ public class ColetaDTO implements Serializable{
 
     private Veiculo veiculo;
 
+    @NotNull(message="O campo MATERIAL é obrigatório")
     private Material material;
 
     private Status status;

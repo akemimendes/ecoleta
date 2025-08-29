@@ -20,6 +20,8 @@ import com.akemi.ecoleta.model.Cooperativa;
 import com.akemi.ecoleta.model.dto.CooperativaDTO;
 import com.akemi.ecoleta.service.CooperativaService;
 
+import jakarta.validation.Valid;
+
 
 @PreAuthorize("hasAnyRole('ADMIN')")
 @RestController
@@ -56,7 +58,7 @@ public class CooperativaController {
 
     @PreAuthorize("hasAnyRole('ADMIN','COOPERATIVA')")
     @PutMapping(value = "/{id}")
-    public ResponseEntity<CooperativaDTO> update(@PathVariable Long id, @RequestBody CooperativaDTO cooperativa) {
+    public ResponseEntity<CooperativaDTO> update(@PathVariable Long id,@Valid @RequestBody CooperativaDTO cooperativa) {
         cooperativaService.updateCooperativa(id, cooperativa);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(cooperativa.getId())
                 .toUri();
@@ -65,7 +67,7 @@ public class CooperativaController {
 
     @PreAuthorize("hasAnyRole('ADMIN','COOPERATIVA')")
     @PostMapping
-    public ResponseEntity<CooperativaDTO> create(@RequestBody CooperativaDTO cooperativa) {
+    public ResponseEntity<CooperativaDTO> create(@Valid @RequestBody CooperativaDTO cooperativa) {
         cooperativaService.createCooperativa(cooperativa);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(cooperativa.getId())
                 .toUri();

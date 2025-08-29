@@ -20,6 +20,8 @@ import com.akemi.ecoleta.model.Industria;
 import com.akemi.ecoleta.model.dto.IndustriaDTO;
 import com.akemi.ecoleta.service.IndustriaService;
 
+import jakarta.validation.Valid;
+
 
 @PreAuthorize("hasAnyRole('ADMIN')")
 @RestController
@@ -56,7 +58,7 @@ public class IndustriaController {
 
     @PreAuthorize("hasAnyRole('ADMIN','INDUSTRIA')")
     @PutMapping(value = "/{id}")
-    public ResponseEntity<IndustriaDTO> update(@PathVariable Long id, @RequestBody IndustriaDTO industria) {
+    public ResponseEntity<IndustriaDTO> update(@PathVariable Long id,@Valid @RequestBody IndustriaDTO industria) {
         industriaService.updateIndustria(id, industria);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(industria.getId())
                 .toUri();
@@ -65,7 +67,7 @@ public class IndustriaController {
 
     @PreAuthorize("hasAnyRole('ADMIN','INDUSTRIA')")
     @PostMapping
-    public ResponseEntity<IndustriaDTO> create(@RequestBody IndustriaDTO industria) {
+    public ResponseEntity<IndustriaDTO> create(@Valid @RequestBody IndustriaDTO industria) {
         industriaService.createIndustria(industria);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(industria.getId())
                 .toUri();

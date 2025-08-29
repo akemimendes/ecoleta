@@ -9,6 +9,8 @@ import com.akemi.ecoleta.model.Veiculo;
 import com.akemi.ecoleta.model.Venda;
 import com.akemi.ecoleta.model.enums.Status;
 import com.fasterxml.jackson.annotation.JsonFormat;
+
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -24,8 +26,10 @@ public class VendaDTO implements Serializable {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDateTime data_venda;
 
+    @NotNull(message="O campo MATERIAL é obrigatório")
     private Material material;
 
+    @NotNull(message="O campo QUANTIDADE KG é obrigatório")
     private float quantidade_kg;
 
     private Veiculo veiculo;

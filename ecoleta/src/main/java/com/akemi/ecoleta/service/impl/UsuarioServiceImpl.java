@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import com.akemi.ecoleta.model.Usuario;
 import com.akemi.ecoleta.model.dto.UsuarioDTO;
-import com.akemi.ecoleta.model.enums.TipoPessoa;
 import com.akemi.ecoleta.repository.UsuarioRepository;
 import com.akemi.ecoleta.service.UsuarioService;
 
@@ -60,10 +59,13 @@ public class UsuarioServiceImpl implements UsuarioService {
             throw new IllegalArgumentException("Usuário não encontrado.");
         }
         Optional<Usuario> p1 = usuarioRepository.findByCpfCnpj(usuario.getCpfCnpj());
-        if (p1.get().getId() != usuario.getId()) {
-            throw new DataIntegrityViolationException("O CPF já existe cadastrado para outro usuário");
+        if (p1.isPresent()) {
+            if (p1.get().getId() != usuario.getId()) {
+                throw new DataIntegrityViolationException("O CPF já existe cadastrado para outro usuário");
+            }
         }
         return usuarioRepository.save(new Usuario(usuario));
+
     }
 
     @Override

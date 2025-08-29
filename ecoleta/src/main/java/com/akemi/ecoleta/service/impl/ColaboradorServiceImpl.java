@@ -14,7 +14,6 @@ import com.akemi.ecoleta.model.dto.ColaboradorDTO;
 import com.akemi.ecoleta.repository.ColaboradorRepository;
 import com.akemi.ecoleta.service.ColaboradorService;
 
-
 @Service
 public class ColaboradorServiceImpl implements ColaboradorService {
 
@@ -55,8 +54,10 @@ public class ColaboradorServiceImpl implements ColaboradorService {
             throw new IllegalArgumentException("Usuário não encontrado.");
         }
         Optional<Colaborador> p1 = colaboradorRepository.findByCpfCnpj(colaborador.getCpfCnpj());
-        if (p1.get().getId() != colaborador.getId()) {
-            throw new DataIntegrityViolationException("O CPF já existe cadastrado para outro usuário");
+        if (p1.isPresent()) {
+            if (p1.get().getId() != colaborador.getId()) {
+                throw new DataIntegrityViolationException("O CPF já existe cadastrado para outro usuário");
+            }
         }
         return colaboradorRepository.save(new Colaborador(colaborador));
     }

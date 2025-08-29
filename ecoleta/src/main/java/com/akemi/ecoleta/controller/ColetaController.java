@@ -20,6 +20,8 @@ import com.akemi.ecoleta.model.Coleta;
 import com.akemi.ecoleta.model.dto.ColetaDTO;
 import com.akemi.ecoleta.service.ColetaService;
 
+import jakarta.validation.Valid;
+
 @PreAuthorize("hasAnyRole('USUARIO')")
 @RestController
 @RequestMapping("coletas")
@@ -53,7 +55,7 @@ public class ColetaController {
 
     @PreAuthorize("hasAnyRole('ADMIN')")
     @PutMapping(value = "/{id}")
-    public ResponseEntity<ColetaDTO> update(@PathVariable Long id, @RequestBody ColetaDTO coleta) {
+    public ResponseEntity<ColetaDTO> update(@PathVariable Long id,@Valid @RequestBody ColetaDTO coleta) {
         coletaService.updateColeta(id, coleta);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(coleta.getId_coleta())
                 .toUri();
@@ -61,7 +63,7 @@ public class ColetaController {
     }
 
     @PostMapping
-    public ResponseEntity<ColetaDTO> create(@RequestBody ColetaDTO coleta) {
+    public ResponseEntity<ColetaDTO> create(@Valid @RequestBody ColetaDTO coleta) {
         coletaService.createColeta(coleta);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(coleta.getId_coleta())
                 .toUri();

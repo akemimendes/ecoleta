@@ -20,6 +20,8 @@ import com.akemi.ecoleta.model.Material;
 import com.akemi.ecoleta.model.dto.MaterialDTO;
 import com.akemi.ecoleta.service.MaterialService;
 
+import jakarta.validation.Valid;
+
 
 @PreAuthorize("hasAnyRole('ADMIN')")
 @RestController
@@ -52,7 +54,7 @@ public class MaterialController {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<MaterialDTO> update(@PathVariable Long id, @RequestBody MaterialDTO material) {
+    public ResponseEntity<MaterialDTO> update(@PathVariable Long id,@Valid @RequestBody MaterialDTO material) {
         materialService.updateMaterial(id, material);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(material.getId_material())
                 .toUri();
@@ -60,7 +62,7 @@ public class MaterialController {
     }
 
     @PostMapping
-    public ResponseEntity<MaterialDTO> create(@RequestBody MaterialDTO material) {
+    public ResponseEntity<MaterialDTO> create(@Valid @RequestBody MaterialDTO material) {
         materialService.createMaterial(material);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(material.getId_material())
                 .toUri();

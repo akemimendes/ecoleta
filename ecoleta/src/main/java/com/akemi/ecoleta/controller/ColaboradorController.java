@@ -20,6 +20,8 @@ import com.akemi.ecoleta.model.Colaborador;
 import com.akemi.ecoleta.model.dto.ColaboradorDTO;
 import com.akemi.ecoleta.service.ColaboradorService;
 
+import jakarta.validation.Valid;
+
 @PreAuthorize("hasAnyRole('ADMIN')")
 @RestController
 @RequestMapping("colaboradores")
@@ -52,7 +54,7 @@ public class ColaboradorController {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<ColaboradorDTO> update(@PathVariable Long id, @RequestBody ColaboradorDTO colaborador) {
+    public ResponseEntity<ColaboradorDTO> update(@PathVariable Long id,@Valid @RequestBody ColaboradorDTO colaborador) {
         colaboradorService.updateColaborador(id, colaborador);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(colaborador.getId())
                 .toUri();
@@ -60,7 +62,7 @@ public class ColaboradorController {
     }
 
     @PostMapping
-    public ResponseEntity<ColaboradorDTO> create(@RequestBody ColaboradorDTO colaborador) {
+    public ResponseEntity<ColaboradorDTO> create(@Valid @RequestBody ColaboradorDTO colaborador) {
         colaboradorService.createColaborador(colaborador);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(colaborador.getId())
                 .toUri();

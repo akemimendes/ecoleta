@@ -20,6 +20,8 @@ import com.akemi.ecoleta.model.Usuario;
 import com.akemi.ecoleta.model.dto.UsuarioDTO;
 import com.akemi.ecoleta.service.UsuarioService;
 
+import jakarta.validation.Valid;
+
 
 @PreAuthorize("hasRole('ADMIN')")
 @RestController
@@ -59,7 +61,7 @@ public class UsuarioController {
   
     @PreAuthorize("hasAnyRole('ADMIN','USUARIO')")
     @PutMapping(value = "/{id}")
-    public ResponseEntity<UsuarioDTO> update(@PathVariable Long id, @RequestBody UsuarioDTO usuario) {
+    public ResponseEntity<UsuarioDTO> update(@PathVariable Long id,@Valid @RequestBody UsuarioDTO usuario) {
         usuarioService.updateUsuario(id, usuario);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(usuario.getId())
                 .toUri();
@@ -68,7 +70,7 @@ public class UsuarioController {
 
     @PreAuthorize("hasAnyRole('ADMIN','USUARIO')")
     @PostMapping
-    public ResponseEntity<UsuarioDTO> create(@RequestBody UsuarioDTO usuario) {
+    public ResponseEntity<UsuarioDTO> create(@Valid @RequestBody UsuarioDTO usuario) {
         usuarioService.createUsuario(usuario);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(usuario.getId())
                 .toUri();

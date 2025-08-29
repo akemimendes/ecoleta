@@ -20,6 +20,8 @@ import com.akemi.ecoleta.model.Venda;
 import com.akemi.ecoleta.model.dto.VendaDTO;
 import com.akemi.ecoleta.service.VendaService;
 
+import jakarta.validation.Valid;
+
 @PreAuthorize("hasAnyRole('ADMIN')")
 @RestController
 @RequestMapping("vendas")
@@ -54,7 +56,7 @@ public class VendaController {
 
     
     @PutMapping(value = "/{id}")
-    public ResponseEntity<VendaDTO> update(@PathVariable Long id, @RequestBody VendaDTO venda) {
+    public ResponseEntity<VendaDTO> update(@PathVariable Long id,@Valid @RequestBody VendaDTO venda) {
         vendaService.updateVenda(id, venda);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(venda.getId_venda())
                 .toUri();
@@ -63,7 +65,7 @@ public class VendaController {
 
     @PreAuthorize("hasAnyRole('ADMIN','INDUSTRIA')")
     @PostMapping
-    public ResponseEntity<VendaDTO> create(@RequestBody VendaDTO venda) {
+    public ResponseEntity<VendaDTO> create(@Valid @RequestBody VendaDTO venda) {
         vendaService.createVenda(venda);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(venda.getId_venda())
                 .toUri();

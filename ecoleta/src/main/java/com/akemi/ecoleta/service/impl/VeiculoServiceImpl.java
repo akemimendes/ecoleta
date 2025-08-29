@@ -48,9 +48,10 @@ public class VeiculoServiceImpl implements VeiculoService {
             throw new IllegalArgumentException("Veículo não foi encontrado.");
         }
         Optional<Veiculo> v1 = veiculoRepository.findByPlaca(veiculo.getPlaca());
+        if (v1.isPresent()){
         if (v1.get().getId_veiculo() != veiculo.getId_veiculo()) {
             throw new DataIntegrityViolationException("A Placa já existe cadastrada para outro veículo");
-        }
+        }}
         return veiculoRepository.save(new Veiculo(veiculo));
     }
 

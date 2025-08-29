@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import com.akemi.ecoleta.model.Cooperativa;
 import com.akemi.ecoleta.model.dto.CooperativaDTO;
-import com.akemi.ecoleta.model.enums.TipoPessoa;
 import com.akemi.ecoleta.repository.CooperativaRepository;
 import com.akemi.ecoleta.service.CooperativaService;
 
@@ -55,8 +54,10 @@ public class CooperativaServiceImpl implements CooperativaService {
             throw new IllegalArgumentException("Usuário não encontrado.");
         }
         Optional<Cooperativa> p1 = cooperativaRepository.findByCpfCnpj(cooperativa.getCpfCnpj());
-        if (p1.get().getId() != cooperativa.getId()) {
-            throw new DataIntegrityViolationException("O CNPJ já existe cadastrado para outro usuário");
+        if (p1.isPresent()) {
+            if (p1.get().getId() != cooperativa.getId()) {
+                throw new DataIntegrityViolationException("O CNPJ já existe cadastrado para outro usuário");
+            }
         }
         return cooperativaRepository.save(new Cooperativa(cooperativa));
     }
