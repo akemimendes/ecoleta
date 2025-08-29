@@ -1,6 +1,6 @@
 # Projeto Ecoleta -  conectando para uma vida sustentável #
 
-Tecnologia: Spring Boot + Java
+Tecnologia: Spring Boot + Spring Security (Autenticação e Autorização) + Java + MySQL
 
 Objetivo:
 
@@ -44,13 +44,6 @@ classDiagram
         - String nome
         - String email
         - String senha
-        - Endereco endereco
-        - Enum tipo
-    }
-
-    class Endereco {
-        - long id_endereco
-        - long id_usuario
         - String logradouro
         - String numero
         - String complemento
@@ -59,7 +52,26 @@ classDiagram
         - String telefone
         - String pontoReferencia
         - String cep
+        - Enum tipoPessoa
     }
+
+    class Colaborador extends Pessoa{
+
+    }
+
+    class Cooperativa extends Pessoa{
+        
+    }
+
+    class Usuario extends Pessoa{
+        
+    }
+
+    class Industria extends Pessoa{
+        
+    }
+
+
 
     class Veiculo {
         - long id_veiculo
@@ -81,12 +93,19 @@ classDiagram
         - Date data_solicitacao
         - Date data_coleta
         - DateTime horario_coleta
+        - Colaborador colaborador
+        - Usuario usuario
+        - Veiculo veiculo
+        - Cooperativa cooperativa
         - Enum status
     }
 
     class Venda {
         - long id_venda
         - Date data_venda
+        - Industria industria
+        - Colaborador colaborador
+        - Veiculo veiculo
         - Float quantidade_kg
         - Enum status
         - Date data_entrega
