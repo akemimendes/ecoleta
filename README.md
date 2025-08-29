@@ -55,19 +55,19 @@ classDiagram
         - Enum tipoPessoa
     }
 
-    class Colaborador extends Pessoa{
+    class Colaborador{
 
     }
 
-    class Cooperativa extends Pessoa{
+    class Cooperativa{
         
     }
 
-    class Usuario extends Pessoa{
+    class Usuario{
         
     }
 
-    class Industria extends Pessoa{
+    class Industria{
         
     }
 
