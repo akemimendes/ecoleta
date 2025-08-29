@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,7 @@ import com.akemi.ecoleta.model.Venda;
 import com.akemi.ecoleta.model.dto.VendaDTO;
 import com.akemi.ecoleta.service.VendaService;
 
+@PreAuthorize("hasAnyRole('ADMIN')")
 @RestController
 @RequestMapping("vendas")
 public class VendaController {
@@ -29,6 +31,7 @@ public class VendaController {
         this.vendaService = vendaService;
     }
 
+   
     @GetMapping
     public ResponseEntity<List<VendaDTO>> findAll() {
         List<Venda> list = vendaService.getVenda();
@@ -36,6 +39,7 @@ public class VendaController {
         return ResponseEntity.ok().body(listDTO);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN','INDUSTRIA')")
     @GetMapping(value = "/{id}")
     public ResponseEntity<VendaDTO> findById(@PathVariable Integer id) {
         Venda venda = vendaService.getVendaById(id);
@@ -48,6 +52,7 @@ public class VendaController {
         return ResponseEntity.noContent().build();
     }
 
+    
     @PutMapping(value = "/{id}")
     public ResponseEntity<VendaDTO> update(@PathVariable Long id, @RequestBody VendaDTO venda) {
         vendaService.updateVenda(id, venda);
@@ -56,6 +61,7 @@ public class VendaController {
         return ResponseEntity.created(uri).build();
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN','INDUSTRIA')")
     @PostMapping
     public ResponseEntity<VendaDTO> create(@RequestBody VendaDTO venda) {
         vendaService.createVenda(venda);

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,8 @@ import com.akemi.ecoleta.model.Cooperativa;
 import com.akemi.ecoleta.model.dto.CooperativaDTO;
 import com.akemi.ecoleta.service.CooperativaService;
 
+
+@PreAuthorize("hasAnyRole('ADMIN')")
 @RestController
 @RequestMapping("cooperativas")
 public class CooperativaController {
@@ -37,18 +40,21 @@ public class CooperativaController {
         return ResponseEntity.ok().body(listDTO);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN','COOPERATIVA')")
     @GetMapping(value = "/{id}")
     public ResponseEntity<CooperativaDTO> findById(@PathVariable Integer id) {
         Cooperativa cooperativa = cooperativaService.getCooperativaById(id);
         return ResponseEntity.ok().body(new CooperativaDTO(cooperativa));
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN','COOPERATIVA')")
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<CooperativaDTO> deleteById(@PathVariable Integer id) {
         cooperativaService.deleteCooperativa(id);
         return ResponseEntity.noContent().build();
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN','COOPERATIVA')")
     @PutMapping(value = "/{id}")
     public ResponseEntity<CooperativaDTO> update(@PathVariable Long id, @RequestBody CooperativaDTO cooperativa) {
         cooperativaService.updateCooperativa(id, cooperativa);
@@ -57,6 +63,7 @@ public class CooperativaController {
         return ResponseEntity.created(uri).build();
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN','COOPERATIVA')")
     @PostMapping
     public ResponseEntity<CooperativaDTO> create(@RequestBody CooperativaDTO cooperativa) {
         cooperativaService.createCooperativa(cooperativa);

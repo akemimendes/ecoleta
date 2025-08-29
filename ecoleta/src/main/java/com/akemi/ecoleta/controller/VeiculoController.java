@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,7 @@ import com.akemi.ecoleta.model.Veiculo;
 import com.akemi.ecoleta.model.dto.VeiculoDTO;
 import com.akemi.ecoleta.service.VeiculoService;
 
+@PreAuthorize("hasAnyRole('ADMIN')")
 @RestController
 @RequestMapping("veiculos")
 public class VeiculoController {
@@ -29,6 +31,7 @@ public class VeiculoController {
         this.veiculoService = veiculoService;
     }
 
+    
     @GetMapping
     public ResponseEntity<List<VeiculoDTO>> findAll() {
         List<Veiculo> list = veiculoService.getVeiculo();

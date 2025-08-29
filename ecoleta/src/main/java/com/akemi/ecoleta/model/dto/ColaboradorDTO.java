@@ -1,10 +1,9 @@
 package com.akemi.ecoleta.model.dto;
 
 import com.akemi.ecoleta.model.Colaborador;
-import com.akemi.ecoleta.model.Pessoa;
 
 
-public class ColaboradorDTO extends Pessoa {
+public class ColaboradorDTO extends PessoaDTO {
 
     public ColaboradorDTO() {
         super();

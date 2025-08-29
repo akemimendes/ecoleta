@@ -40,6 +40,7 @@ public class Usuario extends Pessoa {
         this.cep = pessoa.getCep();
         this.telefone = pessoa.getTelefone();
         this.pontoReferencia = pessoa.getPontoReferencia();
+        this.perfis = pessoa.getPerfis();
     }
 
 

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,8 @@ import com.akemi.ecoleta.model.Usuario;
 import com.akemi.ecoleta.model.dto.UsuarioDTO;
 import com.akemi.ecoleta.service.UsuarioService;
 
+
+@PreAuthorize("hasRole('ADMIN')")
 @RestController
 @RequestMapping("usuarios")
 public class UsuarioController {
@@ -29,6 +32,7 @@ public class UsuarioController {
         this.usuarioService = usuarioService;
     }
 
+    
     @GetMapping
     public ResponseEntity<List<UsuarioDTO>> findAll() {
         List<Usuario> list = usuarioService.getUsuario();
@@ -36,18 +40,24 @@ public class UsuarioController {
         return ResponseEntity.ok().body(listDTO);
     }
 
+ 
+    
+    @PreAuthorize("hasAnyRole('ADMIN','USUARIO')")
     @GetMapping(value = "/{id}")
     public ResponseEntity<UsuarioDTO> findById(@PathVariable Integer id) {
         Usuario usuario = usuarioService.getUsuarioById(id);
         return ResponseEntity.ok().body(new UsuarioDTO(usuario));
     }
 
+   @PreAuthorize("hasAnyRole('ADMIN','USUARIO')")
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<UsuarioDTO> deleteById(@PathVariable Integer id) {
         usuarioService.deleteUsuario(id);
         return ResponseEntity.noContent().build();
     }
 
+  
+    @PreAuthorize("hasAnyRole('ADMIN','USUARIO')")
     @PutMapping(value = "/{id}")
     public ResponseEntity<UsuarioDTO> update(@PathVariable Long id, @RequestBody UsuarioDTO usuario) {
         usuarioService.updateUsuario(id, usuario);
@@ -56,6 +66,7 @@ public class UsuarioController {
         return ResponseEntity.created(uri).build();
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN','USUARIO')")
     @PostMapping
     public ResponseEntity<UsuarioDTO> create(@RequestBody UsuarioDTO usuario) {
         usuarioService.createUsuario(usuario);

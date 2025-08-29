@@ -39,9 +39,14 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public Usuario createUsuario(UsuarioDTO usuario) {
+        if (usuario.getPerfis().size() == 0) {
+            usuario.getPerfis().add(0);
+        } else {
+            usuario.getPerfis().add(4);
+        }
+
         Usuario novoUsuario = new Usuario(usuario);
         novoUsuario.setSenha(encoder.encode(usuario.getSenha()));
-        novoUsuario.getPerfis().add(TipoPessoa.USUARIO);
         if (existsByCpfCnpj(usuario.getCpfCnpj())) {
             throw new DataIntegrityViolationException("CPF já cadastrado no sistema.");
         }

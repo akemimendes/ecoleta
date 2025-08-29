@@ -7,7 +7,6 @@ import com.akemi.ecoleta.model.dto.IndustriaDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.OneToMany;
@@ -39,6 +38,7 @@ public class Industria extends Pessoa {
         this.cep = pessoa.getCep();
         this.telefone = pessoa.getTelefone();
         this.pontoReferencia = pessoa.getPontoReferencia();
+        this.perfis = pessoa.getPerfis();
     }
 
 

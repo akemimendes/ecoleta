@@ -77,4 +77,8 @@ public class Pessoa {
     public Set<TipoPessoa> getPerfis() {
         return perfis.stream().map(x -> TipoPessoa.toEnum(x)).collect(Collectors.toSet());
     }
+
+    public void addPerfil(TipoPessoa perfis) {
+        this.perfis.add(perfis.getCodigo());
+    }
 }

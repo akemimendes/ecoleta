@@ -8,19 +8,19 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.akemi.ecoleta.model.Usuario;
-import com.akemi.ecoleta.repository.UsuarioRepository;
+import com.akemi.ecoleta.model.Pessoa;
+import com.akemi.ecoleta.repository.PessoaRepository;
 import com.akemi.ecoleta.security.UserSS;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService{
 
     @Autowired
-    private UsuarioRepository repository;
+    private PessoaRepository repository;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Optional<Usuario> user=repository.findByEmail(email);
+        Optional<Pessoa> user=repository.findByEmail(email);
         if (user.isPresent()){
             return new UserSS(user.get().getId(),user.get().getEmail(),user.get().getSenha(),user.get().getPerfis());
         }

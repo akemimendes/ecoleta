@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,8 @@ import com.akemi.ecoleta.model.Industria;
 import com.akemi.ecoleta.model.dto.IndustriaDTO;
 import com.akemi.ecoleta.service.IndustriaService;
 
+
+@PreAuthorize("hasAnyRole('ADMIN')")
 @RestController
 @RequestMapping("industrias")
 public class IndustriaController {
@@ -37,18 +40,21 @@ public class IndustriaController {
         return ResponseEntity.ok().body(listDTO);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN','INDUSTRIA')")
     @GetMapping(value = "/{id}")
     public ResponseEntity<IndustriaDTO> findById(@PathVariable Integer id) {
         Industria industria = industriaService.getIndustriaById(id);
         return ResponseEntity.ok().body(new IndustriaDTO(industria));
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN','INDUSTRIA')")
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<IndustriaDTO> deleteById(@PathVariable Integer id) {
         industriaService.deleteIndustria(id);
         return ResponseEntity.noContent().build();
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN','INDUSTRIA')")
     @PutMapping(value = "/{id}")
     public ResponseEntity<IndustriaDTO> update(@PathVariable Long id, @RequestBody IndustriaDTO industria) {
         industriaService.updateIndustria(id, industria);
@@ -57,6 +63,7 @@ public class IndustriaController {
         return ResponseEntity.created(uri).build();
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN','INDUSTRIA')")
     @PostMapping
     public ResponseEntity<IndustriaDTO> create(@RequestBody IndustriaDTO industria) {
         industriaService.createIndustria(industria);

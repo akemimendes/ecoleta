@@ -49,6 +49,7 @@ public class SecurityConfig {
                         .anyRequest().authenticated())
                 .addFilter(new JWTAuthenticationFilter(authenticationManager, jwtUtil))
                 .addFilter(new JWTAuthorizationFilter(authenticationManager, jwtUtil, userDetailsService))
+
                 .authenticationManager(authenticationManager)
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS));

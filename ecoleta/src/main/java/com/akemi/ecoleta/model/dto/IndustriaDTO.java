@@ -1,9 +1,8 @@
 package com.akemi.ecoleta.model.dto;
 
 import com.akemi.ecoleta.model.Industria;
-import com.akemi.ecoleta.model.Pessoa;
 
-public class IndustriaDTO extends Pessoa {
+public class IndustriaDTO extends PessoaDTO {
 
     
     public IndustriaDTO() {

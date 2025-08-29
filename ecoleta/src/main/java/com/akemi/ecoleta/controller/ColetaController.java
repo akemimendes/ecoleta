@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,7 @@ import com.akemi.ecoleta.model.Coleta;
 import com.akemi.ecoleta.model.dto.ColetaDTO;
 import com.akemi.ecoleta.service.ColetaService;
 
+@PreAuthorize("hasAnyRole('USUARIO')")
 @RestController
 @RequestMapping("coletas")
 public class ColetaController {
@@ -29,6 +31,7 @@ public class ColetaController {
         this.coletaService=coletaService;
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @GetMapping
     public ResponseEntity<List<ColetaDTO>> findAll() {
         List<Coleta> list = coletaService.getColeta();
@@ -48,6 +51,7 @@ public class ColetaController {
         return ResponseEntity.noContent().build();
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PutMapping(value = "/{id}")
     public ResponseEntity<ColetaDTO> update(@PathVariable Long id, @RequestBody ColetaDTO coleta) {
         coletaService.updateColeta(id, coleta);

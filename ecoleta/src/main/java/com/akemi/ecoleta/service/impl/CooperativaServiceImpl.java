@@ -39,9 +39,9 @@ public class CooperativaServiceImpl implements CooperativaService {
 
     @Override
     public Cooperativa createCooperativa(CooperativaDTO cooperativa) {
+        cooperativa.getPerfis().add(2);
         Cooperativa novoCooperativa = new Cooperativa(cooperativa);
         novoCooperativa.setSenha(encoder.encode(cooperativa.getSenha()));
-        novoCooperativa.getPerfis().add(TipoPessoa.COOPERATIVA);
         if (existsByCpfCnpj(cooperativa.getCpfCnpj())) {
             throw new DataIntegrityViolationException("CNPJ já cadastrado no sistema.");
         }

@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import com.akemi.ecoleta.model.Colaborador;
 import com.akemi.ecoleta.model.dto.ColaboradorDTO;
-import com.akemi.ecoleta.model.enums.TipoPessoa;
 import com.akemi.ecoleta.repository.ColaboradorRepository;
 import com.akemi.ecoleta.service.ColaboradorService;
 
@@ -39,11 +38,11 @@ public class ColaboradorServiceImpl implements ColaboradorService {
     }
 
     @Override
-    public Colaborador createColaborador(ColaboradorDTO Colaborador) {
-        Colaborador novoColaborador = new Colaborador(Colaborador);
-        novoColaborador.setSenha(encoder.encode(Colaborador.getSenha()));
-        novoColaborador.getPerfis().add(TipoPessoa.COLABORADOR);
-        if (existsByCpfCnpj(Colaborador.getCpfCnpj())) {
+    public Colaborador createColaborador(ColaboradorDTO colaborador) {
+        colaborador.getPerfis().add(1);
+        Colaborador novoColaborador = new Colaborador(colaborador);
+        novoColaborador.setSenha(encoder.encode(colaborador.getSenha()));
+        if (existsByCpfCnpj(colaborador.getCpfCnpj())) {
             throw new DataIntegrityViolationException("CPF já cadastrado no sistema.");
         }
         return colaboradorRepository.save(novoColaborador);

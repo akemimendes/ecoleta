@@ -39,6 +39,7 @@ public class IndustriaServiceImpl implements IndustriaService {
 
     @Override
     public Industria createIndustria(IndustriaDTO industria) {
+        industria.getPerfis().add(3);
         Industria novoIndustria = new Industria(industria);
         novoIndustria.setSenha(encoder.encode(industria.getSenha()));
         novoIndustria.getPerfis().add(TipoPessoa.INDUSTRIA);
