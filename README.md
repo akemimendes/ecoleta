@@ -136,4 +136,9 @@ Venda "N" -- * "1" Veiculo : entrega via
 
 %% Venda -> Pessoa (industria)
 Venda "N" -- * "1" Pessoa : vendida para
+
+Pessoa <|-- Colaborador
+Pessoa <|-- Industria
+Pessoa <|-- Cooperativa
+Pessoa <|-- Usuario
 ```
