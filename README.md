@@ -1,7 +1,17 @@
 # Projeto Ecoleta -  conectando para uma vida sustentável #
 
-Tecnologia: Spring Boot + Spring Security (Autenticação e Autorização) + Java + MySQL
+Tecnologias: 
 
+ - Java + Spring Boot 
+ - Arquitetura MVC para uma melhor organização e manutenção do código.
+ - Padrão de projeto DTO para tranferência de dados
+ - Lombok para aumentar a produtividade e possuir um código mais limpo.
+ - Spring Security para autenticação e autorização com JWT.
+ - Restful para interação/comunicação entre cliente e servidor.
+ - Swagger para documentar e testar os endpoints.
+ - JPA para mapear os objetos Java para bancos de dados. 
+ - MySQL para armazenamento dos dados.
+ - 
 Objetivo:
 
  Desenvolver uma solução tecnológica para promover a sustentabilidade ambiental 
